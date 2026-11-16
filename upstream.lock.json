@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/MemTensor/MemOS",
+  "commit": "adcb9f270c982f2b9ff8db9714792829d3bd6ab8",
+  "distribution": "MemoryOS",
+  "version": "2.0.33",
+  "license": "Apache-2.0",
+  "native_path": "GeneralMemCube/general_text/Qdrant + SchedulerDispatcher",
+  "source_sha256": {
+    "src/memos/memories/textual/general.py": "187759d5c4d444dd67cdbc950893d66a7bfcb7057c32f9702d47f526f4dcde3a",
+    "src/memos/mem_cube/general.py": "7e98195b2f926e2fa005c6f5d6a59054ed58e596ebc3f0a1b69d1c1fbaf15576",
+    "src/memos/vec_dbs/qdrant.py": "d7365fdfd0b44e014dde00dcf71871a8e4b2ff420d864623cc46252aff410d82",
+    "src/memos/mem_scheduler/task_schedule_modules/dispatcher.py": "4c53fba83775460bd8ea881539c47931679109836a1d9ea43ac88b01d0a1393f",
+    "src/memos/templates/mem_reader_prompts.py": "167bf38dfdd145a3c0cdcf60776c4dcb3a2dad761f5e5172b005ba23d1d265ef"
+  },
+  "collaborative_memory": {
+    "paper": "https://arxiv.org/abs/2505.18279",
+    "implementation": "ours adaptation of access graph and provenance rules; no official-code/score reproduction claim"
+  }
+}

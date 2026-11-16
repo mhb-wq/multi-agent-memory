@@ -1,0 +1,325 @@
+{
+  "method": {
+    "database": "runtime/multiuser/state.sqlite3",
+    "sleep_enabled": true,
+    "state_enabled": true,
+    "routing_enabled": true,
+    "candidate_limit": 20,
+    "card_batch_size": 8,
+    "card_repair_attempts": 1,
+    "max_model_input_chars": 192000,
+    "answer_max_input_chars": 384000,
+    "answer_max_tokens": 8192,
+    "max_context_chars": 24000,
+    "team_agents": {
+      "care": [
+        "clinical",
+        "logistics"
+      ]
+    },
+    "state_keys": {
+      "appointment": {
+        "type": "text",
+        "unit": null
+      },
+      "budget": {
+        "type": "number",
+        "unit": "CNY",
+        "min": 0
+      }
+    },
+    "model": "${OURS_LLM_MODEL}",
+    "base_url": "${OURS_LLM_BASE_URL}",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "timeout_seconds": 90,
+    "max_tokens": 4096,
+    "retries": 1,
+    "request_options": {}
+  },
+  "memos": {
+    "directory": "runtime/multiuser/cubes",
+    "text_memory": {
+      "backend": "general_text",
+      "config": {
+        "extractor_llm": {
+          "backend": "openai",
+          "config": {
+            "model_name_or_path": "${OURS_LLM_MODEL}",
+            "api_key": "${DEEPSEEK_API_KEY}",
+            "api_base": "${OURS_LLM_BASE_URL}",
+            "temperature": 0,
+            "max_tokens": 4096,
+            "remove_think_prefix": true
+          }
+        },
+        "embedder": {
+          "backend": "universal_api",
+          "config": {
+            "provider": "openai",
+            "model_name_or_path": "${OURS_EMBEDDING_MODEL}",
+            "api_key": "${OURS_EMBEDDING_API_KEY}",
+            "base_url": "${OURS_EMBEDDING_BASE_URL}",
+            "embedding_dims": "${OURS_EMBEDDING_DIMS}"
+          }
+        },
+        "vector_db": {
+          "backend": "qdrant",
+          "config": {
+            "collection_name": "overridden-per-authorized-cohort",
+            "distance_metric": "cosine",
+            "vector_dimension": "${OURS_EMBEDDING_DIMS}"
+          }
+        }
+      }
+    }
+  },
+  "identities": [
+    {
+      "principal_id": "marcus",
+      "agent_id": "clinical",
+      "space_id": "care",
+      "token_env": "OURS_MARCUS_TOKEN"
+    },
+    {
+      "principal_id": "patel",
+      "agent_id": "clinical",
+      "space_id": "care",
+      "token_env": "OURS_PATEL_TOKEN"
+    },
+    {
+      "principal_id": "nina",
+      "agent_id": "logistics",
+      "space_id": "care",
+      "token_env": "OURS_NINA_TOKEN"
+    },
+    {
+      "principal_id": "martha",
+      "agent_id": "clinical",
+      "space_id": "care",
+      "token_env": "OURS_MARTHA_TOKEN"
+    }
+  ],
+  "mode": "multiuser-v2",
+  "control": {
+    "access_mode": "shared_pool",
+    "principals": [
+      "marcus",
+      "nina",
+      "patel",
+      "martha"
+    ],
+    "categories": [
+      "logistics",
+      "clinical",
+      "contact"
+    ],
+    "agents": {
+      "clinical": {
+        "categories": [
+          "logistics",
+          "clinical",
+          "contact"
+        ],
+        "actions": [
+          "read",
+          "write",
+          "confirm",
+          "delete"
+        ],
+        "controls": [
+          "grant",
+          "revoke",
+          "sleep"
+        ]
+      },
+      "logistics": {
+        "categories": [
+          "logistics"
+        ],
+        "actions": [
+          "read",
+          "write"
+        ],
+        "controls": []
+      }
+    },
+    "spaces": {
+      "care": {
+        "members": [
+          "marcus",
+          "nina",
+          "patel",
+          "martha"
+        ],
+        "agents": [
+          "clinical",
+          "logistics"
+        ],
+        "grant_managers": {
+          "marcus": [
+            "marcus"
+          ],
+          "martha": [
+            "martha"
+          ]
+        }
+      }
+    },
+    "grants": [
+      {
+        "id": "marcus-self-logistics",
+        "issuer": "marcus",
+        "grantee": "marcus",
+        "subject": "marcus",
+        "space": "care",
+        "category": "logistics",
+        "actions": [
+          "read",
+          "write",
+          "confirm",
+          "delete"
+        ],
+        "valid_from": null,
+        "valid_to": null
+      },
+      {
+        "id": "marcus-self-clinical",
+        "issuer": "marcus",
+        "grantee": "marcus",
+        "subject": "marcus",
+        "space": "care",
+        "category": "clinical",
+        "actions": [
+          "read",
+          "write",
+          "confirm",
+          "delete"
+        ],
+        "valid_from": null,
+        "valid_to": null
+      },
+      {
+        "id": "marcus-self-contact",
+        "issuer": "marcus",
+        "grantee": "marcus",
+        "subject": "marcus",
+        "space": "care",
+        "category": "contact",
+        "actions": [
+          "read",
+          "write",
+          "confirm",
+          "delete"
+        ],
+        "valid_from": null,
+        "valid_to": null
+      },
+      {
+        "id": "martha-self-logistics",
+        "issuer": "martha",
+        "grantee": "martha",
+        "subject": "martha",
+        "space": "care",
+        "category": "logistics",
+        "actions": [
+          "read",
+          "write",
+          "confirm",
+          "delete"
+        ],
+        "valid_from": null,
+        "valid_to": null
+      },
+      {
+        "id": "martha-self-clinical",
+        "issuer": "martha",
+        "grantee": "martha",
+        "subject": "martha",
+        "space": "care",
+        "category": "clinical",
+        "actions": [
+          "read",
+          "write",
+          "confirm",
+          "delete"
+        ],
+        "valid_from": null,
+        "valid_to": null
+      },
+      {
+        "id": "martha-self-contact",
+        "issuer": "martha",
+        "grantee": "martha",
+        "subject": "martha",
+        "space": "care",
+        "category": "contact",
+        "actions": [
+          "read",
+          "write",
+          "confirm",
+          "delete"
+        ],
+        "valid_from": null,
+        "valid_to": null
+      },
+      {
+        "id": "patel-marcus-logistics",
+        "issuer": "marcus",
+        "grantee": "patel",
+        "subject": "marcus",
+        "space": "care",
+        "category": "logistics",
+        "actions": [
+          "read",
+          "write",
+          "confirm"
+        ],
+        "valid_from": null,
+        "valid_to": null
+      },
+      {
+        "id": "patel-marcus-clinical",
+        "issuer": "marcus",
+        "grantee": "patel",
+        "subject": "marcus",
+        "space": "care",
+        "category": "clinical",
+        "actions": [
+          "read",
+          "write",
+          "confirm"
+        ],
+        "valid_from": null,
+        "valid_to": null
+      },
+      {
+        "id": "patel-marcus-contact",
+        "issuer": "marcus",
+        "grantee": "patel",
+        "subject": "marcus",
+        "space": "care",
+        "category": "contact",
+        "actions": [
+          "read",
+          "write",
+          "confirm"
+        ],
+        "valid_from": null,
+        "valid_to": null
+      },
+      {
+        "id": "nina-logistics",
+        "issuer": "marcus",
+        "grantee": "nina",
+        "subject": "marcus",
+        "space": "care",
+        "category": "logistics",
+        "actions": [
+          "read"
+        ],
+        "valid_from": null,
+        "valid_to": "2026-10-27T00:00:00+08:00"
+      }
+    ]
+  }
+}

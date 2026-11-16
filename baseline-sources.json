@@ -1,0 +1,32 @@
+{
+  "naive_rag": {
+    "implementation": "src/ours_memory/baselines/naive_rag.py",
+    "embedding": "sentence-transformers/all-MiniLM-L6-v2",
+    "note": "Local implementation of message-level normalized cosine retrieval."
+  },
+  "mem0": {
+    "repository": "https://github.com/mem0ai/mem0",
+    "revision": "94c3fe9f238f3dbf29c9ce98643bd71eb13077cd",
+    "distribution": "mem0ai==2.2.1",
+    "license": "Apache-2.0",
+    "implementation": "external dependency; adapter in src/ours_memory/baselines/mem0.py"
+  },
+  "a_mem": {
+    "repository": "https://github.com/WujiangXu/AgenticMemory",
+    "revision": "b31a1dddf56f87ec762cce3539418602d7e2ffb1",
+    "license": "MIT",
+    "implementation": "external paper implementation; adapter in src/ours_memory/baselines/amem.py"
+  },
+  "memos": {
+    "repository": "https://github.com/MemTensor/MemOS",
+    "revision": "adcb9f270c982f2b9ff8db9714792829d3bd6ab8",
+    "distribution": "MemoryOS==2.0.33",
+    "license": "Apache-2.0",
+    "implementation": "external dependency; adapter in src/ours_memory/baselines/memos.py"
+  },
+  "gatemem_a_mem": {
+    "repository": "https://github.com/rzhub/GateMem",
+    "revision": "a983828b3bb7565e16e25ac8cdc2fc1982633b0b",
+    "implementation": "Separate benchmark-specific upstream variant, not included in this code-only export."
+  }
+}
