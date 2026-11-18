@@ -43,6 +43,8 @@ class CompatibleJsonModel:
             "cards_direct": prompts.CARDS_DIRECT,
             "focused_cards": prompts.FOCUSED_CARDS,
             "focused_state": prompts.FOCUSED_STATE,
+            "focused_joint": prompts.FOCUSED_JOINT,
+            "focused_joint_batch": prompts.FOCUSED_JOINT_BATCH,
             "question_subjects": prompts.QUESTION_SUBJECTS,
             "intake": prompts.INTAKE,
             "select": prompts.SELECT,
@@ -69,7 +71,8 @@ class CompatibleJsonModel:
         request = urllib.request.Request(
             settings.base_url.rstrip("/") + "/chat/completions",
             data=canonical(body).encode(),
-            headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"},
+            headers={"Authorization": "Bearer " + key, "Content-Type": "application/json",
+                     "User-Agent": "python-requests/2.32.3"},
         )
         for attempt in range(settings.retries + 1):
             started = time.perf_counter()

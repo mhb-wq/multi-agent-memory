@@ -8,9 +8,12 @@ and retrieval stay inside the upstream project.
 
 from __future__ import annotations
 
+import html
+import json
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Any, Iterable
+from pathlib import Path
+from typing import Any, Iterable, Sequence
 
 
 @dataclass(frozen=True)
@@ -114,3 +117,59 @@ def format_passage(passage: Passage) -> str:
     return f"{header}\n{passage.text}".strip()
 
 
+def qa_user_prompt(question: dict[str, Any], passages: Sequence[Passage]) -> str:
+    body = "\n\n".join(f"[{index}] {format_passage(p)}" for index, p in enumerate(passages, 1))
+    asker = question.get("asking_user_id") or ""
+    return (
+        f"Asking user: {asker}\n\nQuestion:\n{question['question']}\n\n"
+        f"Retrieved passages:\n{body}\n\nAnswer the question using the retrieved passages."
+    )
+
+
+def judge_user_prompt(question: dict[str, Any], agent_answer: str) -> str:
+    return (
+        f"Question:\n{question['question']}\n\n"
+        f"Gold Answer:\n{question.get('answer', '')}\n\n"
+        f"Agent Answer:\n{agent_answer}\n"
+    )
+
+
+def load_messages(corpus_path: str | Path, domain: str) -> list[Message]:
+    """Load the official corpus in one fixed replay order for every baseline."""
+    data = json.loads(Path(corpus_path).read_text("utf8"))
+    rows: list[Message] = []
+    if isinstance(data, dict):
+        for channel, messages in data.items():
+            if not isinstance(messages, list):
+                continue
+            for message in messages:
+                if not isinstance(message, dict):
+                    continue
+                node = str(message.get("msg_node") or "")
+                text = message.get("content", "")
+                rows.append(
+                    Message(
+                        id=f"{domain}/{channel}/{node}",
+                        text=html.unescape(text).strip() if isinstance(text, str) else "",
+                        author=str(message.get("author") or ""),
+                        timestamp=str(message.get("timestamp") or ""),
+                        channel=str(channel),
+                        role=str(message.get("role") or ""),
+                        topic=str(message.get("topic") or ""),
+                        phase_name=str(message.get("phase_name") or ""),
+                        reply_to=message.get("reply_to"),
+                        metadata={
+                            "role": message.get("role"),
+                            "channel": channel,
+                            "topic": message.get("topic"),
+                            "phase_name": message.get("phase_name"),
+                            "timestamp": message.get("timestamp"),
+                            "reply_to": message.get("reply_to"),
+                            "msg_node": message.get("msg_node"),
+                        },
+                    )
+                )
+    # Global replay order, matching the benchmark's time-oriented run. Every
+    # baseline must see the same message order here.
+    rows.sort(key=lambda row: (row.timestamp, row.channel, row.id))
+    return rows

@@ -372,6 +372,8 @@ class MemoryService:
             "use_hint",
             "state_topic",
             "source",
+            "matter",
+            "participants",
         }
         if set(fields) - allowed_fields:
             raise ValidationError("模型卡片包含未授权字段")

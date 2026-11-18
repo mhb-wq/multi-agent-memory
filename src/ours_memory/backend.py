@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import hashlib
 import inspect
 import os
+import re
 import time
 from typing import Protocol, runtime_checkable
 
@@ -243,6 +245,20 @@ class FixtureBackend:
         self.search_policies.append([policy])
         return [item for event, group, item in self.items.values()
                 if event["team_id"] == caller.team_id and group == policy][:limit]
+
+    def state_embedding_identity(self, space: str) -> str:
+        return "fixture-hashed-terms-v1"
+
+    def embed_state_texts(self, space: str, texts: list[str]) -> list[list[float]]:
+        # Deterministic test vectors, not a semantic model.
+        vectors = []
+        for text in texts:
+            words = re.findall(r"[a-z0-9_]+|[\u3400-\u9fff]", text.lower())
+            vector = [0.0] * 256
+            for word in words:
+                vector[int.from_bytes(hashlib.sha256(word.encode("utf-8")).digest()[:4], "big") % 256] += 1.0
+            vectors.append(vector)
+        return vectors
 
     def delete(self, memory_id: str):
         self.items.pop(memory_id, None)

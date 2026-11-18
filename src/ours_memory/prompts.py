@@ -273,10 +273,68 @@ Usage is a short, grounded suggestion, not
 an additional fact; use an empty string when unsupported. Source speaker must equal author_id;
 source quote must be a contiguous verbatim span of the current text. When context is needed for
 attribution, cite exact prior message id, speaker and contiguous verbatim quote in source.context.
+Include matter as a short description of the specific matter, or an empty string if unclear.
+Include participants as a list of {"name":"registered person ID or unresolved mention","role":"role in this fact"}.
+Resolve a pronoun to the supplied registered person ID only when its referent is supported by the
+current message or supplied context. For a first-person pronoun in the current speaker's own words,
+use author_id as the participant name; for a quotation or earlier message, use that utterance's speaker
+when known, not automatically the current author. Resolve he/she/they and equivalent pronouns only
+when context identifies one person unambiguously; otherwise keep the original mention rather than
+guessing. Preserve the original mention in the source quote. The author is not necessarily the owner
+or actor. Include only supported participants; leave participants empty when none can be determined.
 Return only {"cards":[{"subject":"supplied ID or null","claim":"memory","usage":"short hint or empty",
+"matter":"specific matter or empty","participants":[{"name":"person","role":"role"}],
 "state_topic":["preference|constraint|plan|profile|goal"],"source":{"speaker":"author_id",
 "quote":"verbatim current text","context":[{"id":"prior ID","speaker":"speaker","quote":"verbatim"}]}}]}.
 Return {"cards":[]} when no propositional content exists. The program assigns card IDs.
+"""
+
+FOCUSED_JOINT = FOCUSED_COMMON + """Compare one new card with the supplied old cards and user state entries.
+Return exactly {"relations":[{"old_card_id":"supplied ID","same_matter":"same|related|different|uncertain","relation":"update|supplement|related|unrelated|uncertain","changed_part":"short text"}],
+"operations":[{"subject":"candidate subject","action":"add|update|none|uncertain","state_id":"supplied ID or null",
+"topic":"preference|constraint|plan|profile|goal","content":"updated full state or empty", "status":"confirmed|uncertain", "changed_part":"short text",
+"evidence":["supplied card IDs"]}]}.
+Use only supplied IDs and subjects. A public fact may affect a person only if candidate evidence supports
+their connection to the same matter. The speaker is not automatically its owner. A later statement can
+update an earlier arrangement across speakers when context supports it; distinguish reported past, plans,
+suggestions and completed actions. Preserve unchanged information. Do not update unrelated matters.
+For an update, the operation's subject and topic MUST exactly match the subject and topic of the supplied
+state entry identified by state_id. Never use one person's state_id for a different person's operation.
+If information affects a different person, use an appropriate state owned by that person, add a new entry,
+or use none/uncertain; do not change the old state's owner. Check every operation before returning.
+participant_resolution contains each mention, role, resolved ID when exact registered name or unambiguous
+configured alias matches, and unresolved or ambiguous candidate IDs. A resolved ID makes a person a
+candidate, not necessarily the owner or the affected person. Do not choose an ambiguous ID as established.
+For each old card distinguish same matter, merely related matter, different matter, or uncertain;
+do not label an update when matter identity is different or uncertain. Several distinct tasks can share
+a person, project, day, or name. Do not invent a stable event identifier.
+When the relationship is unclear use uncertain. Changed entries must cite the new card and supporting old
+cards; none and uncertain do not change state. Do not infer absent identities or facts.
+Use status uncertain when the resulting fact is uncertain. Confirmed means the source expressed the
+statement, not that a plan has happened or a reported claim is independently verified.
+"""
+
+FOCUSED_JOINT_BATCH = FOCUSED_COMMON + """Process all new_cards from ONE message together, in supplied order.
+Each new card has its own old_card_ids and state_ids; shared old_cards and states are deduplicated.
+Compare each new card with relevant supplied old_cards and earlier new cards. Each card's
+old_card_ids are its retrieval candidates, but another supplied old card may also be relevant.
+Never refer to an old card absent from old_cards or to a later new card.
+Return exactly {"cards":[{"card_id":"new ID","relations":[{"old_card_id":"candidate or earlier new ID",
+"same_matter":"same|related|different|uncertain","relation":"update|supplement|related|unrelated|uncertain",
+"changed_part":"short text"}]}], "operations":[{"subject":"candidate user ID","action":"add|update|none|uncertain",
+"state_id":"existing candidate ID or null","topic":"preference|constraint|plan|profile|goal",
+"content":"final complete state text or empty","status":"confirmed|uncertain","changed_part":"short text",
+"source_card_ids":["contributing new card IDs"],"evidence":["supplied card IDs"]}]}.
+Return one cards entry for every new card, even when relations is empty. For each existing state,
+produce at most one update containing the final cumulative result after all contributing new cards;
+do not create competing updates for the same state. Combine new cards about the same new state into
+one add when appropriate. Preserve unchanged information and include the supporting old and new
+evidence for the resulting content. A public fact may affect a person only if evidence supports their
+connection. A source_card_id must be included in evidence for every add or update. Use only supplied
+IDs; never treat a speaker as an owner merely because they spoke. A later statement can update an
+earlier arrangement across speakers when context supports it. Distinguish plans and suggestions from
+completed events. If an operation cannot be decided, use uncertain; do not invent facts or identities.
+Confirmed means the source expressed a statement, not independent verification of its truth.
 """
 
 FOCUSED_STATE = FOCUSED_COMMON + """Update this person's state from the supplied state and cards.

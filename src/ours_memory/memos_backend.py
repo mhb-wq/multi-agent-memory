@@ -196,6 +196,21 @@ class MemOSBackend:
         self.store.call("memos_search", success=True, public_cubes=1, ranking="native")
         return [MemoryChange(item.id, item.memory) for item in items[:limit]]
 
+    def state_embedding_identity(self, space: str) -> str:
+        config = self.config["text_memory"]["config"]["embedder"]
+        def public(value):
+            if isinstance(value, dict):
+                return {k: public(v) for k, v in value.items()
+                        if not any(secret in k.lower() for secret in ("key", "token", "password", "secret"))}
+            if isinstance(value, list):
+                return [public(v) for v in value]
+            return value
+        return stable_id("state_embedding", canonical(public(config)))
+
+    def embed_state_texts(self, space: str, texts: list[str]) -> list[list[float]]:
+        policy = stable_id("shared_pool", space)
+        return self._cube(policy, space).text_mem.embedder.embed(texts)
+
     def find_event_memories(self, event_id, policy, user_id):
         journal = self.store.get("native_event", stable_id("native", user_id, policy, event_id))
         return [row["id"] for row in journal["rows"]] if journal else []

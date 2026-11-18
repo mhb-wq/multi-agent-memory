@@ -17,7 +17,7 @@ ASSERTION_FIELDS = (
 
 def compact_card(card, *, for_usage=False):
     if "state_topic" in card:
-        return {k: card[k] for k in ("id", "subject", "author_id", "claim_text", "use_hint", "state_topic", "source")
+        return {k: card[k] for k in ("id", "subject", "author_id", "claim_text", "use_hint", "state_topic", "source", "matter", "participants")
                 if k in card}
     # State maintenance still needs effective intervals. Usage reasoning should
     # read the stated appointment/event time from claim and source quote.

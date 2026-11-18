@@ -103,7 +103,7 @@ def build_amem_paper(
     """Create the paper reproduction ``AgenticMemorySystem`` from ``memory_layer.py``.
 
     ``repo_path`` is the checkout of ``WujiangXu/AgenticMemory`` pinned in
-    ``baseline-sources.json``. The upstream module is imported as-is; only the
+    ``baseline.lock.json``. The upstream module is imported as-is; only the
     OpenAI-compatible endpoint and inference temperature are supplied.
     """
     sys.path.insert(0, str(Path(repo_path).resolve()))

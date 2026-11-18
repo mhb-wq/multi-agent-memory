@@ -23,6 +23,13 @@ class ControlPlane:
         self.state_subjects = set(config.get("state_subjects", config["principals"]))
         if not self.state_subjects <= self.people:
             raise ValidationError("状态主体必须是已登记主体")
+        self.person_aliases = config.get("person_aliases", {})
+        if (not isinstance(self.person_aliases, dict) or any(
+            subject not in self.people or not isinstance(names, list)
+            or any(not isinstance(name, str) or not name.strip() for name in names)
+            for subject, names in self.person_aliases.items()
+        )):
+            raise ValidationError("人物别名必须映射已登记主体到非空文本列表")
         self.categories = set(config["categories"])
         self.agents = config["agents"]
         self.spaces = config["spaces"]

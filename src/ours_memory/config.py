@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -28,6 +29,12 @@ class Settings:
     state_enabled: bool = True
     routing_enabled: bool = True
     source_expansion_enabled: bool = False
+    independent_state_read_enabled: bool = False
+    independent_state_limit: int = 10
+    joint_state_update_enabled: bool = False
+    immediate_state_maintenance_enabled: bool = True
+    joint_candidate_limit: int = 10
+    state_similarity_threshold: float = 0.2
     candidate_limit: int = 20
     card_batch_size: int = 8
     card_repair_attempts: int = 0
@@ -64,10 +71,14 @@ class Settings:
     mem0: dict = field(default_factory=dict)
 
     def validate(self) -> None:
-        for key in ("sleep_enabled", "state_enabled", "routing_enabled", "source_expansion_enabled"):
+        if (type(self.state_similarity_threshold) not in (int, float)
+                or not math.isfinite(self.state_similarity_threshold)
+                or not -1 <= self.state_similarity_threshold <= 1):
+            raise ValidationError("state_similarity_threshold 必须在 -1 到 1 之间")
+        for key in ("sleep_enabled", "state_enabled", "routing_enabled", "source_expansion_enabled", "independent_state_read_enabled", "joint_state_update_enabled", "immediate_state_maintenance_enabled"):
             if type(getattr(self, key)) is not bool:
                 raise ValidationError(f"{key}必须是布尔值")
-        for key in ("candidate_limit", "card_batch_size", "max_model_input_chars", "answer_max_input_chars", "max_context_chars", "answer_max_tokens", "state_max_tokens"):
+        for key in ("candidate_limit", "independent_state_limit", "joint_candidate_limit", "card_batch_size", "max_model_input_chars", "answer_max_input_chars", "max_context_chars", "answer_max_tokens", "state_max_tokens"):
             if type(getattr(self, key)) is not int or getattr(self, key) <= 0:
                 raise ValidationError(f"{key}必须是正整数")
         if type(self.card_repair_attempts) is not int or self.card_repair_attempts not in {0, 1}:
@@ -76,6 +87,9 @@ class Settings:
             raise ValidationError("card_mode只允许extract或direct")
         if not self.state_enabled and self.sleep_enabled:
             raise ValidationError("当前Sleep复核用户状态；禁用状态时须同时关闭Sleep")
+        if (self.joint_state_update_enabled and self.immediate_state_maintenance_enabled
+                and (not self.state_enabled or not self.sleep_enabled)):
+            raise ValidationError("逐卡即时维护需要启用状态和维护功能")
 
     @classmethod
     def load(cls, path: str | Path) -> Settings:

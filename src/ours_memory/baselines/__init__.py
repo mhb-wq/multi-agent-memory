@@ -10,6 +10,9 @@ from .base import (
     Message,
     Passage,
     format_passage,
+    judge_user_prompt,
+    load_messages,
+    qa_user_prompt,
     search_text,
 )
 from .builders import build_amem, build_amem_paper, build_mem0, build_memos, build_memos_native
@@ -32,5 +35,8 @@ __all__ = [
     "build_memos",
     "build_memos_native",
     "format_passage",
+    "judge_user_prompt",
+    "load_messages",
+    "qa_user_prompt",
     "search_text",
 ]

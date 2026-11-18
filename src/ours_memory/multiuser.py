@@ -2,6 +2,7 @@
 
 import hashlib
 import hmac
+import os
 import re
 import secrets
 import uuid
@@ -24,9 +25,11 @@ from .models import (
     stable_id,
     timestamp,
 )
+from .participants import resolve_participants
 from .semantic_views import compact_card, compact_state
 from .service import MemoryService
 from .state import state_id, state_view
+from .state_vector import rank_state_entries
 
 
 class CardFormatError(ValidationError):
@@ -52,10 +55,21 @@ class SleepOnlyCore(GovernedMemoryService):
                         and not item.get("deleted") and not item.get("blocked"))
         return super()._visible(item, caller)
 
+    def _merge_state_evidence(self, previous, proposed, caller):
+        """Retain valid prior provenance while adding this update's proposed sources."""
+        merged = []
+        for card_id in [*previous, *proposed]:
+            card = self.store.get("card", card_id)
+            if (card_id not in merged and card and self._visible(card, caller)
+                    and card.get("team_id") == caller.team_id):
+                merged.append(card_id)
+        return merged
+
     def _update_cards(self, card_ids, task_id, job=None):
         for card_id in card_ids:
             card = self.store.get("card", card_id)
-            if card and (card.get("state_key") or (getattr(self, "focused_schema", False)
+            if card and ((getattr(self, "focused_schema", False) and self.settings.joint_state_update_enabled)
+                         or card.get("state_key") or (getattr(self, "focused_schema", False)
                                                     and card.get("subject") and card.get("state_topic"))):
                 self.store.put("pending_state", card_id, {"card_id": card_id, "task_id": task_id})
         return []
@@ -86,12 +100,16 @@ class SleepOnlyCore(GovernedMemoryService):
     def update_state(self, *args, **kwargs):
         raise AccessDenied("State只能由Sleep维护")
 
-    def finish_task(self, task_id, caller):
+    def finish_task(self, task_id, caller, *, card_ids=None):
         with self.lock:
             self._authorize(caller)
             if not self.settings.sleep_enabled:
                 return {"status": "disabled", "processed": 0}
             if getattr(self, "focused_schema", False):
+                if self.settings.joint_state_update_enabled:
+                    if card_ids is not None and len(card_ids) > 1:
+                        return self._finish_joint_batch(task_id, caller, list(card_ids))
+                    return self._finish_joint(task_id, caller, card_ids=card_ids)
                 return self._finish_focused(task_id, caller)
             pending = [
                 r
@@ -185,6 +203,370 @@ class SleepOnlyCore(GovernedMemoryService):
                 "groups": len(groups),
                 "issues": group_issues,
             }
+
+    def _finish_joint_batch(self, task_id, caller, card_ids):
+        """Retry a truncated fresh batch in smaller, ordered pieces.
+
+        Never apply this fallback to an earlier failed message: later events may
+        already have changed the state and require an ordered replay instead.
+        """
+        before = {key: self.store.get("pending_state", key) for key in card_ids}
+        result = self._finish_joint_batch_once(task_id, caller, card_ids)
+        issues = result.get("issues", [])
+        ordered_recovery = os.environ.get("OURS_ORDERED_BATCH_RECOVERY") == "1"
+        recoverable = {"OutputTruncated"} | ({"ValidationError"} if ordered_recovery else set())
+        if (result.get("status") != "needs_attention" or len(card_ids) < 2
+                or not any(i.get("code") in recoverable for i in issues)
+                or any(not row or (row.get("status") == "needs_attention" and not ordered_recovery)
+                       for row in before.values())):
+            return result
+        cards = [self.store.get("card", key) for key in card_ids]
+        def sequence(card):
+            envelope = self.store.get("envelope_v2", (card.get("source_event_ids") or [""])[0]) or {}
+            return envelope.get("sequence", 0)
+        if any(not c for c in cards):
+            return result
+        cards.sort(key=lambda c: (sequence(c), c["id"]))
+        if any(e.get("space") == caller.team_id and e.get("sequence", 0) > sequence(cards[-1])
+               for e in self.store.all("envelope_v2")):
+            return result
+        for key, row in before.items():
+            if ordered_recovery:
+                row = {k: v for k, v in row.items() if k not in {"status", "last_issues"}}
+            self.store.put("pending_state", key, row)
+        processed = 0
+        for card in cards:
+            one = self._finish_joint(task_id, caller, card_ids={card["id"]})
+            processed += one.get("processed", 0)
+            if one.get("status") != "completed":
+                return {"status": "needs_attention", "processed": processed,
+                        "groups": 1, "issues": issues + one.get("issues", [])}
+        return {"status": "completed", "processed": processed, "groups": 1,
+                "issues": [], "fallback": "ordered_single_card_after_truncation"}
+
+    def _finish_joint_batch_once(self, task_id, caller, card_ids):
+        """Atomically consolidate the pending cards from one message with one model call."""
+        known = set(self.control.spaces[caller.team_id]["members"]) & set(self.control.state_subjects)
+        topics = {"preference", "constraint", "plan", "profile", "goal"}
+        cards = [self.store.get("card", key) for key in card_ids]
+        try:
+            if (any(not c or not self._visible(c, caller) or c.get("team_id") != caller.team_id for c in cards)
+                    or len({c.get("source_message_id") for c in cards}) != 1
+                    or not cards[0].get("source_message_id")):
+                raise ValidationError("批量维护要求同一消息的可见卡片")
+            def sequence(card):
+                envelope = self.store.get("envelope_v2", (card.get("source_event_ids") or [""])[0]) or {}
+                return envelope.get("sequence", 0)
+            cards.sort(key=lambda c: (sequence(c), c["id"]))
+            batch_ids = {c["id"] for c in cards}
+            first_sequence = sequence(cards[0])
+            if any((self.store.get("pending_state", c["id"]) or {}).get("status") == "needs_attention" for c in cards):
+                last_sequence = max(sequence(c) for c in cards)
+                if any(e.get("space") == caller.team_id and e.get("sequence", 0) > last_sequence
+                       for e in self.store.all("envelope_v2")):
+                    raise ValidationError("旧消息有更新后的后续事件，需要按顺序重放")
+            policy = stable_id("shared_pool", caller.team_id)
+            old_cards, old_per_card, subjects, people = {}, {}, set(), {}
+            states, state_per_card, all_states = {}, {}, {}
+            eligible, linked = set(), []
+            for subject in sorted(known):
+                key = stable_id("user_state", caller.team_id, subject)
+                state = self.store.get("user_state", key)
+                if not state:
+                    continue
+                all_states[subject] = state
+                for topic, rows in state.get("topics", {}).items():
+                    for index, row in enumerate(rows):
+                        support = [self.store.get("card", i) for i in row.get("evidence", [])]
+                        if not support or any(not c or not self._visible(c, caller) or c.get("team_id") != caller.team_id
+                                              or sequence(c) >= first_sequence for c in support):
+                            continue
+                        entry_id = row.get("id") or stable_id("state_item", key, topic, str(index))
+                        eligible.add((subject, topic, entry_id))
+                        linked.append({**row, "id": entry_id, "subject": subject, "topic": topic})
+            for card in cards:
+                query = " ".join(x for x in (card.get("claim_text", ""), card.get("matter", "")) if x)
+                hits = self.backend.search_shared(query, caller, policy, self.settings.joint_candidate_limit + len(cards))
+                ids = []
+                for hit in hits:
+                    mapping = self.store.get("memory", hit.memory_id) or {}
+                    old = self.store.get("card", mapping.get("current_card_id", ""))
+                    if (old and old["id"] not in batch_ids and self._visible(old, caller)
+                            and old.get("team_id") == caller.team_id and sequence(old) < first_sequence
+                            and old["id"] not in ids):
+                        ids.append(old["id"])
+                        old_cards[old["id"]] = old
+                    if len(ids) >= self.settings.joint_candidate_limit:
+                        break
+                old_per_card[card["id"]] = ids
+                ranked = rank_state_entries(self.store, self.backend, caller.team_id, known, query,
+                                            self.settings.joint_candidate_limit, allowed_ids=eligible,
+                                            threshold=self.settings.state_similarity_threshold)
+                entries = [e for e in linked if set(ids).intersection(e.get("evidence", []))]
+                entries += [{**e["row"], "id": e["id"], "subject": e["subject"], "topic": e["topic"]} for _, e in ranked]
+                state_ids = []
+                for entry in entries:
+                    if entry["id"] not in state_ids:
+                        states[entry["id"]] = entry
+                        state_ids.append(entry["id"])
+                        subjects.add(entry["subject"])
+                    if len(state_ids) >= self.settings.joint_candidate_limit:
+                        break
+                state_per_card[card["id"]] = state_ids
+            for card in [*cards, *old_cards.values()]:
+                if card.get("subject") in known:
+                    subjects.add(card["subject"])
+                people[card["id"]] = resolve_participants(card, known, self.control.person_aliases)
+                subjects.update(p["resolved_id"] for p in people[card["id"]] if p["resolved_id"])
+            evidence_ids = batch_ids | set(old_cards)
+            for entry in states.values():
+                evidence_ids.update(i for i in entry.get("evidence", []) if self._visible(self.store.get("card", i) or {}, caller))
+            payload = {"new_cards": [{**compact_card(c), "old_card_ids": old_per_card[c["id"]],
+                                       "state_ids": state_per_card[c["id"]]} for c in cards],
+                       "old_cards": [compact_card(c) for c in old_cards.values()], "states": list(states.values()),
+                       "subjects": sorted(subjects), "participant_resolution": people}
+            proposal = self._model("focused_joint_batch", payload)
+            if not isinstance(proposal, dict) or set(proposal) != {"cards", "operations"} or not isinstance(proposal["cards"], list) or not isinstance(proposal["operations"], list):
+                raise ValidationError("批量联合判断输出格式无效")
+            decisions, earlier = {}, set()
+            for result, card in zip(proposal["cards"], cards, strict=True):
+                if not isinstance(result, dict) or set(result) != {"card_id", "relations"} or result["card_id"] != card["id"] or not isinstance(result["relations"], list):
+                    raise ValidationError("批量卡片判断必须按顺序覆盖所有卡片")
+                for rel in result["relations"]:
+                    if (not isinstance(rel, dict) or set(rel) != {"old_card_id", "relation", "same_matter", "changed_part"}
+                            or rel["old_card_id"] not in set(old_cards) | earlier
+                            or rel["relation"] not in {"update", "supplement", "related", "unrelated", "uncertain"}
+                            or rel["same_matter"] not in {"same", "related", "different", "uncertain"}
+                            or (rel["relation"] == "update" and rel["same_matter"] != "same")
+                            or not isinstance(rel["changed_part"], str)):
+                        raise ValidationError("批量卡片关系无效")
+                decisions[card["id"]] = result["relations"]
+                earlier.add(card["id"])
+            updates, touched = {}, set()
+            required = {"subject", "action", "state_id", "topic", "content", "status", "changed_part", "evidence", "source_card_ids"}
+            for op in proposal["operations"]:
+                if not isinstance(op, dict) or set(op) != required or op["subject"] not in subjects:
+                    raise ValidationError("批量状态操作字段或主体无效")
+                if op["action"] == "uncertain":
+                    raise ValidationError("批量状态关系不确定，需要重新判断")
+                if (op["action"] not in {"add", "update", "none"} or op["topic"] not in topics
+                        or op["status"] not in {"confirmed", "uncertain"} or not isinstance(op["source_card_ids"], list)
+                        or not op["source_card_ids"] or any(i not in batch_ids for i in op["source_card_ids"])):
+                    raise ValidationError("批量状态操作类型或来源无效")
+                if op["action"] == "none":
+                    continue
+                if (not isinstance(op["content"], str) or not op["content"].strip() or not isinstance(op["changed_part"], str)
+                        or not isinstance(op["evidence"], list) or not set(op["source_card_ids"]) <= set(op["evidence"])
+                        or any(i not in evidence_ids for i in op["evidence"])):
+                    raise ValidationError("批量状态内容或证据无效")
+                subject = op["subject"]
+                state = updates.setdefault(subject, deepcopy(all_states.get(subject) or {"subject": subject, "topics": {t: [] for t in topics}}))
+                if op["action"] == "update":
+                    old = states.get(op["state_id"])
+                    if not old or old["subject"] != subject or old["topic"] != op["topic"] or op["state_id"] in touched:
+                        raise ValidationError("批量更新目标不在候选或重复")
+                    touched.add(op["state_id"])
+                    rows = state["topics"][op["topic"]]
+                    idx = next((i for i, row in enumerate(rows) if (row.get("id") or stable_id("state_item", stable_id("user_state", caller.team_id, subject), op["topic"], str(i))) == op["state_id"]), None)
+                    if idx is None:
+                        raise ValidationError("批量更新目标不存在")
+                    evidence = self._merge_state_evidence(rows[idx].get("evidence", []), op["evidence"], caller)
+                    rows[idx] = {"id": op["state_id"], "content": op["content"], "status": op["status"], "evidence": evidence}
+                else:
+                    if op["state_id"] is not None:
+                        raise ValidationError("批量新增不能指定旧状态编号")
+                    state["topics"].setdefault(op["topic"], []).append({"id": "state_item_" + secrets.token_hex(16), "content": op["content"], "status": op["status"], "evidence": op["evidence"]})
+            with self.store.transaction():
+                for subject, state in updates.items():
+                    key = stable_id("user_state", caller.team_id, subject)
+                    self.store.put("joint_state_history", "joint_history_" + secrets.token_hex(16),
+                                   {"subject": subject, "card_ids": [c["id"] for c in cards], "before": all_states.get(subject),
+                                    "after": state, "proposal": proposal, "recorded_at": self.clock()})
+                    self.store.put("user_state", key, state)
+                for card in cards:
+                    self.store.put("joint_card_decision", stable_id("joint_card_decision", caller.team_id, card["id"]),
+                                   {"card_id": card["id"], "relations": decisions[card["id"]], "participant_resolution": people, "recorded_at": self.clock()})
+                    self.store.remove("pending_state", card["id"])
+            if updates:
+                try:
+                    rank_state_entries(self.store, self.backend, caller.team_id, known, None, 1)
+                    self.store.remove("state_vector_issue", caller.team_id)
+                except Exception as exc:
+                    issue = self._issue("state_vector_sync", exc)
+                    self.store.put("state_vector_issue", caller.team_id, issue)
+                    return {"status": "needs_attention", "processed": len(cards), "groups": 1, "issues": [issue]}
+            return {"status": "completed", "processed": len(cards), "groups": 1, "issues": []}
+        except Exception as exc:
+            issue = self._issue("focused_joint_batch", exc)
+            for key in card_ids:
+                pending = self.store.get("pending_state", key)
+                if pending:
+                    self.store.put("pending_state", key, {**pending, "status": "needs_attention", "last_issues": [issue]})
+            return {"status": "needs_attention", "processed": 0, "groups": 1, "issues": [issue]}
+
+    def _finish_joint(self, task_id, caller, *, card_ids=None):
+        """Experimental per-card joint relationship/state maintenance for shared pools."""
+        topics = ("preference", "constraint", "plan", "profile", "goal")
+        known = set(self.control.spaces[caller.team_id]["members"]) & set(self.control.state_subjects)
+        pending = [p for p in self.store.all("pending_state")
+                   if (task_id == "__all_pending__" or p.get("task_id") == task_id)
+                   and (card_ids is None or p["card_id"] in card_ids)]
+
+        def sequence(card):
+            envelope = self.store.get("envelope_v2", (card.get("source_event_ids") or [""])[0]) or {}
+            return envelope.get("sequence", 0)
+
+        pending.sort(key=lambda p: (sequence(self.store.get("card", p["card_id"]) or {}), p["card_id"]))
+        processed, issues = 0, []
+        for item in pending:
+            card = self.store.get("card", item["card_id"])
+            if not card or not self._visible(card, caller) or card.get("team_id") != caller.team_id:
+                continue
+            try:
+                current_sequence = sequence(card)
+                if item.get("status") == "needs_attention" and any(
+                    e.get("space") == caller.team_id and e.get("sequence", 0) > current_sequence
+                    for e in self.store.all("envelope_v2")
+                ):
+                    raise ValidationError("旧消息有更新后的后续事件，需要按顺序重放")
+                policy = stable_id("shared_pool", caller.team_id)
+                query_text = " ".join(part for part in (card.get("claim_text", ""), card.get("matter", "")) if part)
+                hits = self.backend.search_shared(query_text, caller, policy,
+                                                  self.settings.joint_candidate_limit + 1)
+                old_cards = []
+                for hit in hits:
+                    mapping = self.store.get("memory", hit.memory_id) or {}
+                    old = self.store.get("card", mapping.get("current_card_id", ""))
+                    if (old and old["id"] != card["id"] and self._visible(old, caller)
+                            and old.get("team_id") == caller.team_id
+                            and sequence(old) < current_sequence and old["id"] not in {c["id"] for c in old_cards}):
+                        old_cards.append(old)
+                old_cards = old_cards[:self.settings.joint_candidate_limit]
+                old_ids = {c["id"] for c in old_cards}
+                candidate_subjects = {card.get("subject")} | {c.get("subject") for c in old_cards}
+                candidate_subjects &= known
+                participant_views = {}
+                for source_card in [card, *old_cards]:
+                    people = resolve_participants(source_card, known, self.control.person_aliases)
+                    participant_views[source_card["id"]] = people
+                    candidate_subjects.update(p["resolved_id"] for p in people if p["resolved_id"])
+                eligible = set()
+                linked_entries = []
+                all_states = {}
+                for subject in sorted(known):
+                    key = stable_id("user_state", caller.team_id, subject)
+                    state = self.store.get("user_state", key)
+                    if not state:
+                        continue
+                    all_states[subject] = state
+                    for topic, rows in state.get("topics", {}).items():
+                        for index, row in enumerate(rows):
+                            support = [self.store.get("card", i) for i in row.get("evidence", [])]
+                            if not support or any(not c or not self._visible(c, caller)
+                                                  or c.get("team_id") != caller.team_id
+                                                  or sequence(c) >= current_sequence for c in support):
+                                continue
+                            entry_id = row.get("id") or stable_id("state_item", key, topic, str(index))
+                            eligible.add((subject, topic, entry_id))
+                            linked = bool(old_ids.intersection(row.get("evidence", [])))
+                            if linked:
+                                linked_entries.append({**row, "id": entry_id, "subject": subject, "topic": topic})
+                ranked = rank_state_entries(self.store, self.backend, caller.team_id, known,
+                                            query_text, self.settings.joint_candidate_limit,
+                                            allowed_ids=eligible, threshold=self.settings.state_similarity_threshold)
+                candidate_entries = []
+                for entry in linked_entries + [{**e["row"], "id": e["id"], "subject": e["subject"], "topic": e["topic"]}
+                                               for _, e in ranked]:
+                    if not any(old["id"] == entry["id"] for old in candidate_entries):
+                        candidate_entries.append(entry)
+                        candidate_subjects.add(entry["subject"])
+                    if len(candidate_entries) >= self.settings.joint_candidate_limit:
+                        break
+                evidence_ids = {card["id"]} | old_ids
+                for entry in candidate_entries:
+                    evidence_ids.update(i for i in entry.get("evidence", []) if self._visible(self.store.get("card", i) or {}, caller))
+                payload = {"new_card": compact_card(card), "old_cards": [compact_card(c) for c in old_cards],
+                           "states": candidate_entries, "subjects": sorted(candidate_subjects),
+                           "participant_resolution": participant_views}
+                proposal = self._model("focused_joint", payload)
+                if not isinstance(proposal, dict) or set(proposal) != {"relations", "operations"}:
+                    raise ValidationError("联合判断输出字段无效")
+                if not isinstance(proposal["relations"], list) or not isinstance(proposal["operations"], list):
+                    raise ValidationError("联合判断须返回关系列表和操作列表")
+                for relation in proposal["relations"]:
+                    if (not isinstance(relation, dict) or not {"old_card_id", "relation", "changed_part"} <= set(relation)
+                            or set(relation) - {"old_card_id", "relation", "changed_part", "same_matter"}
+                            or relation["old_card_id"] not in old_ids
+                            or relation["relation"] not in {"update", "supplement", "related", "unrelated", "uncertain"}
+                            or relation.get("same_matter", "uncertain") not in {"same", "related", "different", "uncertain"}
+                            or (relation.get("same_matter") in {"related", "different", "uncertain"}
+                                and relation["relation"] == "update")
+                            or not isinstance(relation["changed_part"], str)):
+                        raise ValidationError("卡片关系无效")
+                if any(op.get("action") == "uncertain" for op in proposal["operations"] if isinstance(op, dict)):
+                    raise ValidationError("关系不确定，需要重新判断")
+                entries = {entry["id"]: entry for entry in candidate_entries}
+                updates, touched = {}, set()
+                for op in proposal["operations"]:
+                    required = {"subject", "action", "state_id", "topic", "content", "status", "changed_part", "evidence"}
+                    if not isinstance(op, dict) or set(op) != required or op["subject"] not in candidate_subjects:
+                        raise ValidationError("状态操作字段或主体无效")
+                    if (op["action"] not in {"add", "update", "none"} or op["topic"] not in topics
+                            or op["status"] not in {"confirmed", "uncertain"}):
+                        raise ValidationError("状态操作类型或主题无效")
+                    if op["action"] == "none":
+                        continue
+                    if (not isinstance(op["content"], str) or not op["content"].strip()
+                            or not isinstance(op["changed_part"], str) or not isinstance(op["evidence"], list)
+                            or card["id"] not in op["evidence"]
+                            or any(i not in evidence_ids for i in op["evidence"])):
+                        raise ValidationError("状态内容或证据无效")
+                    subject = op["subject"]
+                    state = updates.setdefault(subject, deepcopy(all_states.get(subject) or
+                                               {"subject": subject, "topics": {t: [] for t in topics}}))
+                    if op["action"] == "update":
+                        old = entries.get(op["state_id"])
+                        if not old or old["subject"] != subject or old["topic"] != op["topic"] or op["state_id"] in touched:
+                            raise ValidationError("目标状态不在候选中或主体不符")
+                        touched.add(op["state_id"])
+                        rows = state["topics"][op["topic"]]
+                        idx = next((i for i, row in enumerate(rows) if (row.get("id") or stable_id(
+                            "state_item", stable_id("user_state", caller.team_id, subject), op["topic"], str(i))) == op["state_id"]), None)
+                        if idx is None:
+                            raise ValidationError("目标状态不存在")
+                        evidence = self._merge_state_evidence(rows[idx].get("evidence", []), op["evidence"], caller)
+                        rows[idx] = {"id": op["state_id"], "content": op["content"], "status": op["status"], "evidence": evidence}
+                    else:
+                        if op["state_id"] is not None:
+                            raise ValidationError("新增状态不能指定旧状态编号")
+                        state["topics"].setdefault(op["topic"], []).append({"id": "state_item_" + secrets.token_hex(16),
+                            "content": op["content"], "status": op["status"], "evidence": op["evidence"]})
+                with self.store.transaction():
+                    for subject, state in updates.items():
+                        key = stable_id("user_state", caller.team_id, subject)
+                        self.store.put("joint_state_history", "joint_history_" + secrets.token_hex(16),
+                                       {"subject": subject, "card_id": card["id"], "before": all_states.get(subject),
+                                        "after": state, "proposal": proposal, "recorded_at": self.clock()})
+                        self.store.put("user_state", key, state)
+                    self.store.put("joint_card_decision", stable_id("joint_card_decision", caller.team_id, card["id"]),
+                                   {"card_id": card["id"], "relations": proposal["relations"],
+                                    "participant_resolution": participant_views, "recorded_at": self.clock()})
+                    self.store.remove("pending_state", card["id"])
+                processed += 1
+                if updates:
+                    try:
+                        rank_state_entries(self.store, self.backend, caller.team_id, known, None, 1)
+                        self.store.remove("state_vector_issue", caller.team_id)
+                    except Exception as exc:
+                        issue = self._issue("state_vector_sync", exc, card_id=card["id"])
+                        self.store.put("state_vector_issue", caller.team_id, issue)
+                        issues.append(issue)
+            except Exception as exc:
+                issue = self._issue("focused_joint", exc, card_id=card["id"])
+                self.store.put("pending_state", card["id"], {**item, "status": "needs_attention", "last_issues": [issue]})
+                issues.append(issue)
+        return {"status": "needs_attention" if issues else "completed", "processed": processed,
+                "groups": len(pending), "issues": issues}
 
     def _finish_focused(self, task_id, caller):
         topics = ("preference", "constraint", "plan", "profile", "goal")
@@ -297,6 +679,15 @@ class SleepOnlyCore(GovernedMemoryService):
                         self.store.remove("pending_state", c["id"])
                     self.store.remove("focused_state_issue", key)
                 processed += len(cards)
+                if self.settings.independent_state_read_enabled:
+                    try:
+                        known = set(self.control.spaces[caller.team_id]["members"]) & set(self.control.state_subjects)
+                        rank_state_entries(self.store, self.backend, caller.team_id, known, None, 1)
+                        self.store.remove("state_vector_issue", caller.team_id)
+                    except Exception as exc:
+                        issue = self._issue("state_vector_sync", exc, subject=subject)
+                        self.store.put("state_vector_issue", caller.team_id, issue)
+                        issues.append(issue)
             except Exception as exc:
                 issue = self._issue("focused_state", exc, subject=subject)
                 failure_id = "focused_failure_" + secrets.token_hex(16)
@@ -588,6 +979,37 @@ class MultiUserMemory:
             prior = self.store.get("message_v2", key)
             if prior and (prior.get("deleted") or prior["digest"] != digest):
                 raise ValidationError("消息已删除或ID绑定不同内容")
+            if self.core.focused_schema:
+                # Preserve source text even when extraction yields no cards or fails.
+                if not isinstance(message_id, str) or not message_id or not isinstance(text, str) or not text.strip():
+                    raise ValidationError("消息编号和内容不能为空")
+                if metadata is not None and (not isinstance(metadata, dict) or any(
+                    value is not None and not isinstance(value, str) for value in metadata.values()
+                )):
+                    raise ValidationError("来源元数据须为文本")
+                source = self.store.get("source_message_v2", key)
+                if source and (source.get("deleted") or source.get("digest") != digest):
+                    raise ValidationError("原始消息已删除或ID绑定不同内容")
+                if not source:
+                    source = {"id": key, "external_id": message_id, "space": actor.space_id,
+                              "author_id": actor.principal_id, "text": text, "observed_at": observed_at,
+                              "recorded_at": self.clock(), "channel": (metadata or {}).get("channel"),
+                              "reply_to": (metadata or {}).get("reply_to"), "metadata": deepcopy(metadata or {}),
+                              "digest": digest, "status": "received", "deleted": False,
+                              "arrival_sequence": 1 + max((r.get("arrival_sequence", 0) for r in
+                                  self.store.all("source_message_v2") if r.get("space") == actor.space_id), default=0)}
+                    self.store.put("source_message_v2", key, source)
+                deferred = self.store.get("deferred_message_v2", key)
+                outstanding_state = source.get("processing_status") == "state_maintenance_pending" and any(
+                    (self.store.get("card", pending.get("card_id", "")) or {}).get("source_message_id") == key
+                    for pending in self.store.all("pending_state"))
+                if (deferred or outstanding_state) and any(r.get("space") == actor.space_id and
+                    r.get("arrival_sequence", 0) > source.get("arrival_sequence", 0)
+                    for r in self.store.all("source_message_v2")):
+                    # Reprocessing an older message after newer state changes can
+                    # overwrite the newer facts; retain it for ordered replay.
+                    return {"message_id": key, "events": [], "status": "accepted_pending",
+                            "processing_status": "ordered_replay_required", "recovery": "ordered_replay_required"}
             if not prior:
                 if self.core.focused_schema or self.settings.card_mode == "direct":
                     format_errors = []
@@ -602,12 +1024,28 @@ class MultiUserMemory:
                                 break
                             except (CardFormatError, ModelOutputError) as exc:
                                 format_errors.append(self.core._issue("focused_cards", exc))
+                            except AccessDenied:
+                                raise
+                            except Exception as exc:  # isolate provider or per-message failure
+                                format_errors.append(self.core._issue("focused_cards", exc))
+                                break
                     else:
                         cards = self._cards_direct(
                             actor, text, metadata, observed_at, fallback_category, scope=scope, item_id=item_id,
                             prior_context=prior_context
                         )
                     skipped = cards is None
+                    if self.core.focused_schema and skipped:
+                        self.store.put("deferred_message_v2", key, {"id": key, "space": actor.space_id,
+                            "actor": asdict(actor), "message_id": message_id, "text": text, "scope": scope,
+                            "item_id": item_id, "observed_at": observed_at, "metadata": metadata,
+                            "fallback_category": fallback_category, "prior_context": deepcopy(prior_context),
+                            "stage": "extraction", "issues": format_errors, "status": "retryable"})
+                        source["status"] = "extraction_pending"
+                        self.store.put("source_message_v2", key, source)
+                        return {"message_id": key, "events": [], "status": "accepted_pending",
+                                "processing_status": "extraction_pending", "extraction_status": "deferred",
+                                "extraction_attempts": len(format_errors), "issues": format_errors}
                     prior = {"id": key, "digest": digest, "cards": cards or [], "events": [], "deleted": False}
                     if self.core.focused_schema:
                         prior.update(extraction_status="skipped_format" if skipped else "extracted",
@@ -669,15 +1107,20 @@ class MultiUserMemory:
                     fragments = safe_fragments
                     prior = {"id": key, "digest": digest, "fragments": fragments, "events": [], "deleted": False}
                 self.store.put("message_v2", key, prior)
+                if self.core.focused_schema:
+                    self.store.remove("deferred_message_v2", key)
             results = []
             if self.core.focused_schema or self.settings.card_mode == "direct":
+                batch_immediate = (self.core.focused_schema and self.settings.joint_state_update_enabled
+                                   and self.settings.immediate_state_maintenance_enabled and len(prior["cards"]) > 1)
                 for index, card in enumerate(prior["cards"]):
                     expected_id = stable_id(
                         "event_v2", actor.space_id, actor.principal_id, f"{message_id}:{index}"
                     )
                     prior["events"] = sorted(set(prior["events"] + [expected_id]))
                     self.store.put("message_v2", key, prior)
-                    result = self.ingest(
+                    try:
+                        result = self.ingest(
                         actor,
                         event_id=f"{message_id}:{index}",
                         subject_id=card["subject_id"] or actor.principal_id,
@@ -691,18 +1134,97 @@ class MultiUserMemory:
                         state_eligible=(card["subject_id"] is not None and
                                         card["subject_id"] in self.control.state_subjects),
                         card_fields=card["fields"],
-                    )
+                        )
+                    except AccessDenied:
+                        raise
+                    except Exception as exc:  # retain this card and attempt its siblings
+                        if not self.core.focused_schema:
+                            raise
+                        result = {"event_id": expected_id, "card_ids": [], "status": "needs_attention",
+                                  "issues": [self.core._issue("card_storage", exc)]}
+                    if (self.core.focused_schema and self.settings.joint_state_update_enabled
+                            and self.settings.immediate_state_maintenance_enabled
+                            and result["status"] == "done" and not batch_immediate):
+                        ids = {card_id for card_id in result["card_ids"]
+                               if self.store.get("pending_state", card_id)}
+                        if ids:
+                            maintenance = self.core.finish_task(actor.task_id, self._internal(actor, actor.principal_id),
+                                                                card_ids=ids)
+                            result["state_update"] = maintenance["status"]
+                            result["state_maintenance"] = maintenance
+                        elif self.store.get("state_vector_issue", actor.space_id):
+                            try:
+                                known = (set(self.control.spaces[actor.space_id]["members"])
+                                         & set(self.control.state_subjects))
+                                rank_state_entries(self.store, self.backend, actor.space_id, known, None, 1)
+                                result["state_update"] = "already_processed"
+                            except Exception as exc:
+                                issue = self.core._issue("state_vector_sync", exc)
+                                self.store.put("state_vector_issue", actor.space_id, issue)
+                                result["state_update"] = "needs_attention"
+                                result["state_maintenance"] = {"status": "needs_attention", "issues": [issue]}
+                        else:
+                            result["state_update"] = "already_processed"
                     results.append(result)
                     prior["events"] = sorted(set(prior["events"] + [result["event_id"]]))
                     self.store.put("message_v2", key, prior)
+                    if result.get("state_update") == "needs_attention":
+                        # Do not overtake a failed earlier card from the same message.
+                        # Retrying the message reuses extracted cards and resumes here.
+                        break
+                    if result.get("status") != "done" and not self.core.focused_schema:
+                        break
+                if batch_immediate and len(results) == len(prior["cards"]) and all(r["status"] == "done" for r in results):
+                    ids = {card_id for result in results for card_id in result["card_ids"]
+                           if self.store.get("pending_state", card_id)}
+                    if ids:
+                        maintenance = self.core.finish_task(actor.task_id, self._internal(actor, actor.principal_id), card_ids=ids)
+                        for result in results:
+                            result["state_update"] = maintenance["status"]
+                            result["state_maintenance"] = maintenance
+                    elif self.store.get("state_vector_issue", actor.space_id):
+                        try:
+                            known = set(self.control.spaces[actor.space_id]["members"]) & set(self.control.state_subjects)
+                            rank_state_entries(self.store, self.backend, actor.space_id, known, None, 1)
+                            self.store.remove("state_vector_issue", actor.space_id)
+                        except Exception as exc:
+                            issue = self.core._issue("state_vector_sync", exc)
+                            self.store.put("state_vector_issue", actor.space_id, issue)
+                            for result in results:
+                                result["state_update"] = "needs_attention"
+                                result["state_maintenance"] = {"status": "needs_attention", "issues": [issue]}
                 response = {
                     "message_id": key,
                     "events": results,
                     "status": "done" if all(r["status"] == "done" for r in results) else "needs_attention",
                 }
+                if self.core.focused_schema and any(r.get("status") != "done" for r in results):
+                    response["status"] = "accepted_pending"
+                    response["processing_status"] = "card_storage_pending"
+                if any(r.get("state_update") == "needs_attention" for r in results):
+                    response["status"] = "accepted_pending" if self.core.focused_schema else "needs_attention"
+                    response["processing_status"] = "state_maintenance_pending"
+                    response["unprocessed_card_count"] = len(prior["cards"]) - len(results)
+                    response["pending_state_card_count"] = sum(
+                        1 for r in results for card_id in r.get("card_ids", [])
+                        if self.store.get("pending_state", card_id)
+                    )
                 if self.core.focused_schema:
                     response.update(extraction_status=prior.get("extraction_status", "extracted"),
                                     extraction_attempts=prior.get("extraction_attempts", 1))
+                    if response["status"] == "accepted_pending":
+                        self.store.put("deferred_message_v2", key, {"id": key, "space": actor.space_id,
+                            "actor": asdict(actor), "message_id": message_id, "text": text, "scope": scope,
+                            "item_id": item_id, "observed_at": observed_at, "metadata": metadata,
+                            "fallback_category": fallback_category, "prior_context": deepcopy(prior_context),
+                            "stage": response["processing_status"], "status": "retryable"})
+                    else:
+                        self.store.remove("deferred_message_v2", key)
+                    source = self.store.get("source_message_v2", key)
+                    if source:
+                        source["status"] = prior.get("extraction_status", "extracted")
+                        source["processing_status"] = response.get("processing_status", "complete")
+                        self.store.put("source_message_v2", key, source)
                 return response
             for index, fragment in enumerate(prior["fragments"]):
                 expected_id = stable_id(
@@ -764,7 +1286,8 @@ class MultiUserMemory:
             raise ValidationError("回退类别未登记")
         output = []
         for c in answer["cards"]:
-            if not isinstance(c, dict) or set(c) != {"subject", "claim", "usage", "state_topic", "source"}:
+            required = {"subject", "claim", "usage", "state_topic", "source"}
+            if not isinstance(c, dict) or not required <= set(c) or set(c) - required - {"matter", "participants"}:
                 raise CardFormatError("新版记忆卡片字段不合法")
             subject, claim, usage, labels, source = (c[k] for k in ("subject", "claim", "usage", "state_topic", "source"))
             if not isinstance(claim, str) or not claim.strip():
@@ -783,8 +1306,18 @@ class MultiUserMemory:
             # stored on the event, so an imperfect quote does not replace it.
             quote = source.get("quote") if isinstance(source, dict) else None
             quote = quote if isinstance(quote, str) else ""
+            matter = c.get("matter", "")
+            participants = c.get("participants", [])
+            if (not isinstance(matter, str) or len(matter) > 300 or not isinstance(participants, list)
+                    or len(participants) > 20 or any(
+                        not isinstance(p, dict) or set(p) != {"name", "role"}
+                        or not isinstance(p["name"], str) or not p["name"].strip()
+                        or len(p["name"]) > 200 or not isinstance(p["role"], str)
+                        or len(p["role"]) > 200 for p in participants)):
+                raise CardFormatError("事项或人物角色字段不合法")
             fields = {"subject": subject, "claim": claim.strip(), "source_quote": quote,
                       "use_hint": usage.strip(), "state_topic": labels, "source": source,
+                      "matter": matter.strip(), "participants": participants,
                       "evidence_kind": "explicit_user_statement", "scope": scope, "conditions": [],
                       "state_key": None, "value": None, "unit": None, "state_aspect": None}
             output.append({"subject_id": subject, "category": category, "source_quote": quote, "fields": fields})
@@ -1264,6 +1797,37 @@ class MultiUserMemory:
                             if any(matched_topics.values()):
                                 states[key] = {**state, "topics": matched_topics}
                                 relevant.add(subject)
+                if self.settings.independent_state_read_enabled and purpose == "current" and target_time is None:
+                    # Reconcile the independent semantic index before every lookup.
+                    eligible = set()
+                    for subject in sorted(known):
+                        key = stable_id("user_state", actor.space_id, subject)
+                        state = self.store.get("user_state", key)
+                        if not state:
+                            continue
+                        for topic, rows in state.get("topics", {}).items():
+                            for index, row in enumerate(rows):
+                                evidence = row.get("evidence") or []
+                                if not evidence or any(card_id not in cards for card_id in evidence):
+                                    continue
+                                eligible.add((subject, topic, row.get("id") or stable_id("state_item", key, topic, str(index))))
+                    ranked = rank_state_entries(self.store, self.backend, actor.space_id, known, query,
+                                                self.settings.independent_state_limit, allowed_ids=eligible,
+                                                threshold=self.settings.state_similarity_threshold)
+                    for _, found in ranked:
+                        subject, topic, row, state = found["subject"], found["topic"], found["row"], found["state"]
+                        key = stable_id("user_state", actor.space_id, subject)
+                        evidence = row["evidence"]
+                        # Bound extra evidence separately from the original card Top-K.
+                        missing = [card_id for card_id in evidence if card_id not in candidates]
+                        if len(candidates) + len(missing) > limit + self.settings.independent_state_limit:
+                            continue
+                        entry = states.setdefault(key, {**state, "topics": {t: [] for t in state["topics"]}})
+                        if row not in entry["topics"].setdefault(topic, []):
+                            entry["topics"][topic].append(deepcopy(row))
+                        relevant.add(subject)
+                        for card_id in missing:
+                            candidates[card_id] = cards[card_id]
             # Pending evidence must never be discarded merely because the last Sleep is stale.
             answer = (
                 self._select(
@@ -1438,14 +2002,29 @@ class MultiUserMemory:
                     if c.get("subject") and (relevant is None or c.get("subject") in relevant)
                     and self.store.get("pending_state", c["id"])
                 })
+                if self.settings.joint_state_update_enabled and any(
+                    not c.get("subject") and self.store.get("pending_state", c["id"])
+                    for c in candidates.values()
+                ):
+                    # A relevant public change can affect a user's state before
+                    # joint maintenance determines the actual affected people.
+                    bundle["pending_subjects"] = sorted(set(bundle["pending_subjects"]) | (relevant or set()))
             bundle["card_annotations"] = {
                 view["id"]: {"usage_note": view["usage_note"], "state_status": view["state_status"]}
                 for view in views
             }
+            if shared:
+                bundle["incomplete_message_count"] = sum(
+                    1 for row in self.store.all("deferred_message_v2") if row.get("space") == actor.space_id)
+                bundle["pending_state_count"] = sum(
+                    1 for row in self.store.all("pending_state")
+                    if (self.store.get("card", row.get("card_id", "")) or {}).get("team_id") == actor.space_id)
             self.store.put("bundle_v2", bundle_id, bundle)
             result = {"bundle_id": bundle_id, "cards": views}
             if shared:
                 result.update(user_states=bundle["user_states"], pending_subjects=bundle["pending_subjects"])
+                result["incomplete_message_count"] = bundle["incomplete_message_count"]
+                result["pending_state_count"] = bundle["pending_state_count"]
             return result
 
     @staticmethod
@@ -1487,6 +2066,11 @@ class MultiUserMemory:
             ],
             [self.store.get("user_state", stable_id("user_state", actor.space_id, subject))
              for subject in sorted(subjects)] if self.core.focused_schema else [],
+            sorted(r["id"] for r in self.store.all("deferred_message_v2")
+                   if r.get("space") == actor.space_id) if self.core.focused_schema else [],
+            sorted(r["card_id"] for r in self.store.all("pending_state")
+                   if (self.store.get("card", r.get("card_id", "")) or {}).get("team_id") == actor.space_id)
+                   if self.core.focused_schema else [],
         )
 
     def _select(self, *, query, actor, scope, target, purpose, candidates, states, pending_keys):
@@ -1651,12 +2235,14 @@ class MultiUserMemory:
             row = self.store.get("bundle_v2", bundle_id)
             cards = [self._bundle_card(row, k) for k in row["card_ids"]]
             user_states = row.get("user_states", [])
+            incomplete = {"incomplete_message_count": row.get("incomplete_message_count", 0),
+                          "pending_state_count": row.get("pending_state_count", 0)}
             if not cards and not user_states:
-                return {"action": "no_memory", "text": "当前没有可用于回答的授权记忆。"}
+                return {"action": "no_memory", "text": "当前没有可用于回答的授权记忆。", **incomplete}
             draft = self.core._model(
                 "answer", {"question": question, "cards": cards, "user_states": user_states,
                            "pending_subjects": row.get("pending_subjects", []),
-                           "asking_user_id": actor.principal_id}
+                           **incomplete, "asking_user_id": actor.principal_id}
             )
             if (
                 set(draft) != {"text", "card_ids"}
@@ -1667,7 +2253,7 @@ class MultiUserMemory:
                 raise ValidationError("回答只能引用当前证据包")
             if not self.validate_bundle(actor, bundle_id)["ready"]:
                 raise AccessDenied("证据已失效，请重新读取")
-            return {"action": "answer", "text": draft["text"]}
+            return {"action": "answer", "text": draft["text"], **incomplete}
 
     def review_response(self, actor, bundle_id, question, response, *, card_ids=None):
         """Check an externally generated answer against a bound authorized bundle."""
@@ -1963,6 +2549,10 @@ class MultiUserMemory:
                         # the supposedly erased plaintext in the sidecar database.
                         message.update(fragments=[], cards=[], deleted=True)
                         self.store.put("message_v2", message["id"], message)
+                        source = self.store.get("source_message_v2", message["id"])
+                        if source:
+                            source.update(text="", metadata={}, deleted=True, status="deleted")
+                            self.store.put("source_message_v2", message["id"], source)
                 for card in self.store.all("card"):
                     if set(card["source_event_ids"]) & roots:
                         self.store.remove("pending_state", card["id"])
