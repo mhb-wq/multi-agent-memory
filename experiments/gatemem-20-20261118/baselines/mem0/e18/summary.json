@@ -1,0 +1,99 @@
+{
+  "system": "mem0",
+  "episodes": [
+    {
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "turns_available": 224,
+      "checkpoints": 24,
+      "elapsed_seconds": 287.9,
+      "status": "completed"
+    }
+  ],
+  "predictions": 24,
+  "judge": {
+    "n_judged": 24,
+    "n_action_scored": 24,
+    "n_utility": 8,
+    "n_utility_scored": 8,
+    "n_privacy": 8,
+    "n_privacy_scored": 8,
+    "n_safety": 8,
+    "n_safety_scored": 8,
+    "judge_action_ok_rate": 0.5,
+    "judge_utility_accuracy": 0.875,
+    "judge_effective_utility_accuracy": 0.75,
+    "judge_privacy_leakage_rate": 0.0,
+    "judge_deletion_leakage_rate": 0.0,
+    "judge_parse_failure_rate": 0.0,
+    "judge_parse_failure_rate_by_query_type": {
+      "utility": 0.0,
+      "privacy": 0.0,
+      "safety": 0.0
+    },
+    "gated_by_action": false,
+    "llm": {
+      "latency_s_total": 23.888754700012214,
+      "tokens": {
+        "input_tokens": 21171,
+        "output_tokens": 1316,
+        "total_tokens": 22487,
+        "avg_total_tokens_per_case": 936.9583333333334
+      },
+      "provider": "deepseek",
+      "model": "deepseek-flash"
+    },
+    "prompt_path": "D:\\课题\\多智能体\\ours\\experiments\\gatemem\\official\\code\\bench\\prompts\\judge_prompt.txt"
+  },
+  "rule": {
+    "n_checkpoints": 24,
+    "n_utility": 8,
+    "n_utility_scored": 8,
+    "n_privacy": 8,
+    "n_privacy_scored": 8,
+    "n_privacy_context_scored": 8,
+    "n_privacy_e2e_scored": 8,
+    "n_safety": 8,
+    "n_safety_scored": 8,
+    "n_safety_context_scored": 8,
+    "n_safety_e2e_scored": 8,
+    "action_accuracy": 0.5,
+    "utility_accuracy": 0.625,
+    "privacy_leakage_rate": 0.0,
+    "deletion_leakage_rate": 0.0,
+    "privacy_answer_leakage_rate": 0.0,
+    "deletion_answer_leakage_rate": 0.0,
+    "privacy_context_leakage_rate": 0.875,
+    "deletion_context_leakage_rate": 1.0,
+    "privacy_e2e_leakage_rate": 0.875,
+    "deletion_e2e_leakage_rate": 1.0,
+    "over_refusal_rate": 0.125,
+    "compliance_utility_score": 0.625,
+    "compliance_utility_e2e_score": 0.0,
+    "metric_semantics": {
+      "privacy_leakage_rate": "answer-level privacy leakage in final output",
+      "deletion_leakage_rate": "answer-level deletion/staleness leakage in final output",
+      "privacy_context_leakage_rate": "privacy leakage in memory context exposed to the answer model",
+      "deletion_context_leakage_rate": "deleted/stale content in memory context exposed to the answer model",
+      "privacy_e2e_leakage_rate": "privacy answer leak OR privacy context exposure",
+      "deletion_e2e_leakage_rate": "deletion answer leak OR deletion context exposure"
+    },
+    "gated_by_action": false,
+    "runtime": {
+      "total_s": 265.3839425000406,
+      "ingest_s": 233.9445264000169,
+      "query_s": 31.439416100023664,
+      "avg_total_s_per_ckpt": 11.057664270835025
+    },
+    "llm": {
+      "latency_s_total": 27.627198299989686,
+      "tokens": {
+        "input_tokens": 45509,
+        "output_tokens": 2734,
+        "total_tokens": 48243,
+        "avg_total_tokens_per_ckpt": 2010.125
+      }
+    }
+  },
+  "judgments": 24
+}

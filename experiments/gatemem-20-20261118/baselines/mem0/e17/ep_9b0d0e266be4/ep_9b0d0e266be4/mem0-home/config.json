@@ -1,0 +1,94 @@
+{
+    "notice_state": {
+        "temporal_usage": {
+            "events": [
+                {
+                    "evaluated_at": "2026-10-27T15:41:35.553317+00:00",
+                    "variant": "holdout",
+                    "sync_type": "sync",
+                    "trigger_function": "add",
+                    "trigger_source": "metadata",
+                    "trigger_reason": "date_like_metadata"
+                },
+                {
+                    "evaluated_at": "2026-10-27T15:41:36.752085+00:00",
+                    "variant": "holdout",
+                    "sync_type": "sync",
+                    "trigger_function": "add",
+                    "trigger_source": "metadata",
+                    "trigger_reason": "date_like_metadata"
+                },
+                {
+                    "evaluated_at": "2026-10-27T15:41:37.664270+00:00",
+                    "variant": "holdout",
+                    "sync_type": "sync",
+                    "trigger_function": "add",
+                    "trigger_source": "metadata",
+                    "trigger_reason": "date_like_metadata"
+                },
+                {
+                    "evaluated_at": "2026-10-27T15:41:39.292252+00:00",
+                    "variant": "holdout",
+                    "sync_type": "sync",
+                    "trigger_function": "add",
+                    "trigger_source": "metadata",
+                    "trigger_reason": "date_like_metadata"
+                },
+                {
+                    "evaluated_at": "2026-10-27T15:41:40.547060+00:00",
+                    "variant": "holdout",
+                    "sync_type": "sync",
+                    "trigger_function": "add",
+                    "trigger_source": "metadata",
+                    "trigger_reason": "date_like_metadata"
+                },
+                {
+                    "evaluated_at": "2026-10-27T15:41:42.521079+00:00",
+                    "variant": "holdout",
+                    "sync_type": "sync",
+                    "trigger_function": "add",
+                    "trigger_source": "metadata",
+                    "trigger_reason": "date_like_metadata"
+                },
+                {
+                    "evaluated_at": "2026-10-27T15:41:44.255172+00:00",
+                    "variant": "holdout",
+                    "sync_type": "sync",
+                    "trigger_function": "add",
+                    "trigger_source": "metadata",
+                    "trigger_reason": "date_like_metadata"
+                },
+                {
+                    "evaluated_at": "2026-10-27T15:41:45.597472+00:00",
+                    "variant": "holdout",
+                    "sync_type": "sync",
+                    "trigger_function": "add",
+                    "trigger_source": "metadata",
+                    "trigger_reason": "date_like_metadata"
+                },
+                {
+                    "evaluated_at": "2026-10-27T15:41:46.895972+00:00",
+                    "variant": "holdout",
+                    "sync_type": "sync",
+                    "trigger_function": "add",
+                    "trigger_source": "metadata",
+                    "trigger_reason": "date_like_metadata"
+                },
+                {
+                    "evaluated_at": "2026-10-27T15:41:47.482039+00:00",
+                    "variant": "holdout",
+                    "sync_type": "sync",
+                    "trigger_function": "add",
+                    "trigger_source": "metadata",
+                    "trigger_reason": "date_like_metadata"
+                }
+            ]
+        },
+        "first_run": {
+            "consumed": true,
+            "consumed_at": "2026-10-27T15:42:29.462758+00:00",
+            "trigger_function": "search",
+            "variant": "holdout"
+        }
+    }
+}
