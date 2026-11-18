@@ -1,0 +1,13 @@
+{
+  "memory_model": "deepseek-flash",
+  "embedding": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "dimensions": 384
+  },
+  "reasoning_policy": "disabled",
+  "method": {
+    "joint_state_update_enabled": true,
+    "immediate_state_maintenance_enabled": true,
+    "independent_state_read_enabled": true
+  }
+}
