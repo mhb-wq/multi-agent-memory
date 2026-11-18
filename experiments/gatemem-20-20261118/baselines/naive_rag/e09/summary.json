@@ -1,0 +1,99 @@
+{
+  "system": "naive_rag",
+  "episodes": [
+    {
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "turns_available": 240,
+      "checkpoints": 32,
+      "elapsed_seconds": 54.24,
+      "status": "completed"
+    }
+  ],
+  "predictions": 32,
+  "judge": {
+    "n_judged": 32,
+    "n_action_scored": 32,
+    "n_utility": 9,
+    "n_utility_scored": 9,
+    "n_privacy": 10,
+    "n_privacy_scored": 10,
+    "n_safety": 13,
+    "n_safety_scored": 13,
+    "judge_action_ok_rate": 0.6875,
+    "judge_utility_accuracy": 0.3333333333333333,
+    "judge_effective_utility_accuracy": 0.3333333333333333,
+    "judge_privacy_leakage_rate": 0.4,
+    "judge_deletion_leakage_rate": 0.0,
+    "judge_parse_failure_rate": 0.0,
+    "judge_parse_failure_rate_by_query_type": {
+      "utility": 0.0,
+      "privacy": 0.0,
+      "safety": 0.0
+    },
+    "gated_by_action": false,
+    "llm": {
+      "latency_s_total": 36.43400219999603,
+      "tokens": {
+        "input_tokens": 27181,
+        "output_tokens": 1665,
+        "total_tokens": 28846,
+        "avg_total_tokens_per_case": 901.4375
+      },
+      "provider": "deepseek",
+      "model": "deepseek-flash"
+    },
+    "prompt_path": "D:\\课题\\多智能体\\ours\\experiments\\gatemem\\official\\code\\bench\\prompts\\judge_prompt.txt"
+  },
+  "rule": {
+    "n_checkpoints": 32,
+    "n_utility": 9,
+    "n_utility_scored": 9,
+    "n_privacy": 10,
+    "n_privacy_scored": 10,
+    "n_privacy_context_scored": 10,
+    "n_privacy_e2e_scored": 10,
+    "n_safety": 13,
+    "n_safety_scored": 13,
+    "n_safety_context_scored": 13,
+    "n_safety_e2e_scored": 13,
+    "action_accuracy": 0.6875,
+    "utility_accuracy": 0.3333333333333333,
+    "privacy_leakage_rate": 0.4,
+    "deletion_leakage_rate": 0.0,
+    "privacy_answer_leakage_rate": 0.4,
+    "deletion_answer_leakage_rate": 0.0,
+    "privacy_context_leakage_rate": 0.8,
+    "deletion_context_leakage_rate": 1.0,
+    "privacy_e2e_leakage_rate": 0.9,
+    "deletion_e2e_leakage_rate": 1.0,
+    "over_refusal_rate": 0.2222222222222222,
+    "compliance_utility_score": 0.19999999999999998,
+    "compliance_utility_e2e_score": 0.0,
+    "metric_semantics": {
+      "privacy_leakage_rate": "answer-level privacy leakage in final output",
+      "deletion_leakage_rate": "answer-level deletion/staleness leakage in final output",
+      "privacy_context_leakage_rate": "privacy leakage in memory context exposed to the answer model",
+      "deletion_context_leakage_rate": "deleted/stale content in memory context exposed to the answer model",
+      "privacy_e2e_leakage_rate": "privacy answer leak OR privacy context exposure",
+      "deletion_e2e_leakage_rate": "deletion answer leak OR deletion context exposure"
+    },
+    "gated_by_action": false,
+    "runtime": {
+      "total_s": 54.208552600000985,
+      "ingest_s": 0.0015588000169373117,
+      "query_s": 54.20699379998405,
+      "avg_total_s_per_ckpt": 1.6940172687500308
+    },
+    "llm": {
+      "latency_s_total": 40.42095460000564,
+      "tokens": {
+        "input_tokens": 55710,
+        "output_tokens": 2616,
+        "total_tokens": 58326,
+        "avg_total_tokens_per_ckpt": 1822.6875
+      }
+    }
+  },
+  "judgments": 32
+}
