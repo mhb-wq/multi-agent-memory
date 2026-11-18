@@ -1,0 +1,4 @@
+{"turn": "t001", "status": "done", "processing_status": null, "cards": 5}
+{"turn": "t002", "status": "done", "processing_status": null, "cards": 2}
+{"turn": "t003", "status": "done", "processing_status": null, "cards": 2}
+{"turn": "t004", "status": "accepted_pending", "processing_status": "state_maintenance_pending", "cards": 2}
