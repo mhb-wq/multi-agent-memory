@@ -1,0 +1,85 @@
+{
+  "status": "completed_with_failures",
+  "max_workers": 6,
+  "min_free_gb": 1.8,
+  "precompleted": [
+    3,
+    16,
+    18
+  ],
+  "queue": [],
+  "active": [],
+  "finished": {
+    "2": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "1": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "4": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "5": {
+      "exit_code": 0,
+      "status": "stopped_needs_review"
+    },
+    "6": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "7": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "8": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "9": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "11": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "10": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "12": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "13": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "17": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "15": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "14": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "20": {
+      "exit_code": 0,
+      "status": "completed"
+    },
+    "19": {
+      "exit_code": 0,
+      "status": "completed"
+    }
+  },
+  "threads_per_worker": 1,
+  "free_memory_gb": 5.11,
+  "updated_at": 1794991707.8169985
+}

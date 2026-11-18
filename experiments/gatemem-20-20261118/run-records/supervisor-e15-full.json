@@ -1,0 +1,20 @@
+{
+  "selection": "selection-20.json",
+  "status": "completed",
+  "index": 15,
+  "group": "full",
+  "port": 18215,
+  "ledger": "D:\\课题\\多智能体\\ours\\runtime\\gatemem-expanded-20261118\\ledger-e15-full.json",
+  "restarts": 1,
+  "events": [
+    {
+      "event": "restart_scheduled",
+      "run_status": "failed",
+      "time": 1794989819.2131727
+    },
+    {
+      "event": "transport_retry",
+      "time": 1794989829.2278128
+    }
+  ]
+}

@@ -1,0 +1,4641 @@
+{
+  "dataset": "GateMem",
+  "seed": "20261027",
+  "selection": "domain-stratified sha256 rank of episode_id; all official checkpoints in each selected episode; no content, answers, or outcome labels used in selection",
+  "episode_quota": {
+    "medical": 5,
+    "office": 4,
+    "education": 8,
+    "household": 6
+  },
+  "episodes": [
+    {
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "turns": 194,
+      "checkpoints": 27,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "turns": 199,
+      "checkpoints": 27,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "turns": 206,
+      "checkpoints": 28,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "turns": 198,
+      "checkpoints": 29,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "turns": 206,
+      "checkpoints": 28,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "turns": 240,
+      "checkpoints": 32,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "turns": 240,
+      "checkpoints": 32,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "turns": 240,
+      "checkpoints": 32,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "turns": 240,
+      "checkpoints": 32,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236
+    },
+    {
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236
+    },
+    {
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236
+    },
+    {
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236
+    },
+    {
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "turns": 228,
+      "checkpoints": 18,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236
+    },
+    {
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236
+    },
+    {
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "turns": 198,
+      "checkpoints": 18,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "turns": 224,
+      "checkpoints": 24,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "turns": 224,
+      "checkpoints": 24,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "turns": 224,
+      "checkpoints": 24,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "turns": 224,
+      "checkpoints": 24,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "turns": 224,
+      "checkpoints": 24,
+      "missing_timestamps": 0
+    },
+    {
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "turns": 224,
+      "checkpoints": 24,
+      "missing_timestamps": 0
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_01",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t018",
+      "as_of_index": 17
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_02",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t022",
+      "as_of_index": 21
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_03",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t032",
+      "as_of_index": 31
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_04",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t037",
+      "as_of_index": 36
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_05",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t061",
+      "as_of_index": 60
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_06",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t044",
+      "as_of_index": 43
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_07",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t054",
+      "as_of_index": 53
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_08",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t056",
+      "as_of_index": 55
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_09",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t075",
+      "as_of_index": 74
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_10",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t071",
+      "as_of_index": 70
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_11",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t085",
+      "as_of_index": 84
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_12",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t111",
+      "as_of_index": 110
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_13",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t095",
+      "as_of_index": 94
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_14",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t100",
+      "as_of_index": 99
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_15",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t102",
+      "as_of_index": 101
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_16",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t118",
+      "as_of_index": 117
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_17",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t114",
+      "as_of_index": 113
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_18",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t163",
+      "as_of_index": 162
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_19",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t164",
+      "as_of_index": 163
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_20",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t165",
+      "as_of_index": 164
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_21",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t166",
+      "as_of_index": 165
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_22",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t167",
+      "as_of_index": 166
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_23",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t168",
+      "as_of_index": 167
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_24",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t169",
+      "as_of_index": 168
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_25",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t170",
+      "as_of_index": 169
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_26",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t172",
+      "as_of_index": 171
+    },
+    {
+      "id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line_ckpt_27",
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t177",
+      "as_of_index": 176
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_01",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t018",
+      "as_of_index": 17
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_02",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t029",
+      "as_of_index": 28
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_03",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t042",
+      "as_of_index": 41
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_04",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t045",
+      "as_of_index": 44
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_05",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t058",
+      "as_of_index": 57
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_06",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t088",
+      "as_of_index": 87
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_07",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t112",
+      "as_of_index": 111
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_08",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t120",
+      "as_of_index": 119
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_09",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t130",
+      "as_of_index": 129
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_10",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t137",
+      "as_of_index": 136
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_11",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t015",
+      "as_of_index": 14
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_12",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t026",
+      "as_of_index": 25
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_13",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t030",
+      "as_of_index": 29
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_14",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t039",
+      "as_of_index": 38
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_15",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t055",
+      "as_of_index": 54
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_16",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t081",
+      "as_of_index": 80
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_17",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t091",
+      "as_of_index": 90
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_18",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t114",
+      "as_of_index": 113
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_19",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t123",
+      "as_of_index": 122
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_20",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t160",
+      "as_of_index": 159
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_21",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t162",
+      "as_of_index": 161
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_22",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t164",
+      "as_of_index": 163
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_23",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t166",
+      "as_of_index": 165
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_24",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t170",
+      "as_of_index": 169
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_25",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t174",
+      "as_of_index": 173
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_26",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t178",
+      "as_of_index": 177
+    },
+    {
+      "id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line_ckpt_27",
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t180",
+      "as_of_index": 179
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_01",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t052",
+      "as_of_index": 51
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_02",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t060",
+      "as_of_index": 59
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_03",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t084",
+      "as_of_index": 83
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_04",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t107",
+      "as_of_index": 106
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_05",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t119",
+      "as_of_index": 118
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_06",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t131",
+      "as_of_index": 130
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_07",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t148",
+      "as_of_index": 147
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_08",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t150",
+      "as_of_index": 149
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_09",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t166",
+      "as_of_index": 165
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_10",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t206",
+      "as_of_index": 205
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_11",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t079",
+      "as_of_index": 78
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_12",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t097",
+      "as_of_index": 96
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_13",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t098",
+      "as_of_index": 97
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_14",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t104",
+      "as_of_index": 103
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_15",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t125",
+      "as_of_index": 124
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_16",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t142",
+      "as_of_index": 141
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_17",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t171",
+      "as_of_index": 170
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_18",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t175",
+      "as_of_index": 174
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_19",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t186",
+      "as_of_index": 185
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_20",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t174",
+      "as_of_index": 173
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_21",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t180",
+      "as_of_index": 179
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_22",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t183",
+      "as_of_index": 182
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_23",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t185",
+      "as_of_index": 184
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_24",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t188",
+      "as_of_index": 187
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_25",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t189",
+      "as_of_index": 188
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_26",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t191",
+      "as_of_index": 190
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_27",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t195",
+      "as_of_index": 194
+    },
+    {
+      "id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup_ckpt_28",
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t197",
+      "as_of_index": 196
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_01",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t019",
+      "as_of_index": 18
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_02",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t029",
+      "as_of_index": 28
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_03",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t035",
+      "as_of_index": 34
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_04",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t038",
+      "as_of_index": 37
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_05",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t044",
+      "as_of_index": 43
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_06",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t051",
+      "as_of_index": 50
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_07",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t059",
+      "as_of_index": 58
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_08",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t063",
+      "as_of_index": 62
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_09",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t068",
+      "as_of_index": 67
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_10",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t076",
+      "as_of_index": 75
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_11",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t017",
+      "as_of_index": 16
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_12",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t032",
+      "as_of_index": 31
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_13",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t042",
+      "as_of_index": 41
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_14",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t049",
+      "as_of_index": 48
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_15",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t056",
+      "as_of_index": 55
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_16",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t065",
+      "as_of_index": 64
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_17",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t072",
+      "as_of_index": 71
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_18",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t085",
+      "as_of_index": 84
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_19",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t088",
+      "as_of_index": 87
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_20",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t094",
+      "as_of_index": 93
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_21",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t146",
+      "as_of_index": 145
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_22",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t151",
+      "as_of_index": 150
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_23",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t154",
+      "as_of_index": 153
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_24",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t157",
+      "as_of_index": 156
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_25",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t160",
+      "as_of_index": 159
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_26",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t163",
+      "as_of_index": 162
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_27",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t166",
+      "as_of_index": 165
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_28",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t169",
+      "as_of_index": 168
+    },
+    {
+      "id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line_ckpt_29",
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t172",
+      "as_of_index": 171
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_01",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t024",
+      "as_of_index": 23
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_02",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t038",
+      "as_of_index": 37
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_03",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t046",
+      "as_of_index": 45
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_04",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t055",
+      "as_of_index": 54
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_05",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t057",
+      "as_of_index": 56
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_06",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t097",
+      "as_of_index": 96
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_07",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t122",
+      "as_of_index": 121
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_08",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t133",
+      "as_of_index": 132
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_09",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t147",
+      "as_of_index": 146
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_10",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "utility",
+      "as_of_turn_id": "t178",
+      "as_of_index": 177
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_11",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t043",
+      "as_of_index": 42
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_12",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t064",
+      "as_of_index": 63
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_13",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t090",
+      "as_of_index": 89
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_14",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t119",
+      "as_of_index": 118
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_15",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t115",
+      "as_of_index": 114
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_16",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t149",
+      "as_of_index": 148
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_17",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t158",
+      "as_of_index": 157
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_18",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t188",
+      "as_of_index": 187
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_19",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "privacy",
+      "as_of_turn_id": "t183",
+      "as_of_index": 182
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_20",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t171",
+      "as_of_index": 170
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_21",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t175",
+      "as_of_index": 174
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_22",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t183",
+      "as_of_index": 182
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_23",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t185",
+      "as_of_index": 184
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_24",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t189",
+      "as_of_index": 188
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_25",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t198",
+      "as_of_index": 197
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_26",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t183",
+      "as_of_index": 182
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_27",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t189",
+      "as_of_index": 188
+    },
+    {
+      "id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact_ckpt_28",
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "query_type": "safety",
+      "as_of_turn_id": "t205",
+      "as_of_index": 204
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_01",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t060",
+      "as_of_index": 59
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_02",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t088",
+      "as_of_index": 87
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_03",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t114",
+      "as_of_index": 113
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_04",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t142",
+      "as_of_index": 141
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_05",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t168",
+      "as_of_index": 167
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_06",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t194",
+      "as_of_index": 193
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_07",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t214",
+      "as_of_index": 213
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_08",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t228",
+      "as_of_index": 227
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_09",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t238",
+      "as_of_index": 237
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_10",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t072",
+      "as_of_index": 71
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_11",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t096",
+      "as_of_index": 95
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_12",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t122",
+      "as_of_index": 121
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_13",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t148",
+      "as_of_index": 147
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_14",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t172",
+      "as_of_index": 171
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_15",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t186",
+      "as_of_index": 185
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_16",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_17",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t218",
+      "as_of_index": 217
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_18",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t232",
+      "as_of_index": 231
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_19",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t240",
+      "as_of_index": 239
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_20",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t150",
+      "as_of_index": 149
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_21",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t158",
+      "as_of_index": 157
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_22",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t166",
+      "as_of_index": 165
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_23",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t174",
+      "as_of_index": 173
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_24",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t182",
+      "as_of_index": 181
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_25",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t190",
+      "as_of_index": 189
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_26",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t198",
+      "as_of_index": 197
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_27",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t206",
+      "as_of_index": 205
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_28",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t212",
+      "as_of_index": 211
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_29",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t220",
+      "as_of_index": 219
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_30",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_31",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t234",
+      "as_of_index": 233
+    },
+    {
+      "id": "office_episode_custom_en_016_anchor_anchorline_dual_project_ckpt_32",
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t240",
+      "as_of_index": 239
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_01",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t060",
+      "as_of_index": 59
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_02",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t088",
+      "as_of_index": 87
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_03",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t114",
+      "as_of_index": 113
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_04",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t142",
+      "as_of_index": 141
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_05",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t168",
+      "as_of_index": 167
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_06",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t194",
+      "as_of_index": 193
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_07",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t214",
+      "as_of_index": 213
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_08",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t228",
+      "as_of_index": 227
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_09",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t238",
+      "as_of_index": 237
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_10",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t072",
+      "as_of_index": 71
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_11",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t096",
+      "as_of_index": 95
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_12",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t122",
+      "as_of_index": 121
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_13",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t148",
+      "as_of_index": 147
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_14",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t172",
+      "as_of_index": 171
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_15",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t186",
+      "as_of_index": 185
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_16",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_17",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t218",
+      "as_of_index": 217
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_18",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t232",
+      "as_of_index": 231
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_19",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t240",
+      "as_of_index": 239
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_20",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t150",
+      "as_of_index": 149
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_21",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t158",
+      "as_of_index": 157
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_22",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t166",
+      "as_of_index": 165
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_23",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t174",
+      "as_of_index": 173
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_24",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t182",
+      "as_of_index": 181
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_25",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t190",
+      "as_of_index": 189
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_26",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t198",
+      "as_of_index": 197
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_27",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t206",
+      "as_of_index": 205
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_28",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t212",
+      "as_of_index": 211
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_29",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t220",
+      "as_of_index": 219
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_30",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_31",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t234",
+      "as_of_index": 233
+    },
+    {
+      "id": "office_episode_custom_en_008_horizon_horizonline_dual_project_ckpt_32",
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t240",
+      "as_of_index": 239
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_01",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t060",
+      "as_of_index": 59
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_02",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t072",
+      "as_of_index": 71
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_03",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t088",
+      "as_of_index": 87
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_04",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t100",
+      "as_of_index": 99
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_05",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t108",
+      "as_of_index": 107
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_06",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t116",
+      "as_of_index": 115
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_07",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t132",
+      "as_of_index": 131
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_08",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_09",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_10",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t090",
+      "as_of_index": 89
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_11",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t096",
+      "as_of_index": 95
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_12",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t100",
+      "as_of_index": 99
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_13",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t108",
+      "as_of_index": 107
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_14",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t116",
+      "as_of_index": 115
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_15",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t132",
+      "as_of_index": 131
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_16",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t148",
+      "as_of_index": 147
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_17",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t164",
+      "as_of_index": 163
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_18",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t182",
+      "as_of_index": 181
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_19",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_20",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t116",
+      "as_of_index": 115
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_21",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t132",
+      "as_of_index": 131
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_22",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t148",
+      "as_of_index": 147
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_23",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t164",
+      "as_of_index": 163
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_24",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t182",
+      "as_of_index": 181
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_25",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t182",
+      "as_of_index": 181
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_26",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_27",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_28",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_29",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_30",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_31",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_001_maple_maplemark_dual_project_ckpt_32",
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_01",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t060",
+      "as_of_index": 59
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_02",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t072",
+      "as_of_index": 71
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_03",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t088",
+      "as_of_index": 87
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_04",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t100",
+      "as_of_index": 99
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_05",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t108",
+      "as_of_index": 107
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_06",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t116",
+      "as_of_index": 115
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_07",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t132",
+      "as_of_index": 131
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_08",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_09",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "utility",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_10",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t090",
+      "as_of_index": 89
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_11",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t096",
+      "as_of_index": 95
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_12",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t100",
+      "as_of_index": 99
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_13",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t108",
+      "as_of_index": 107
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_14",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t116",
+      "as_of_index": 115
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_15",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t132",
+      "as_of_index": 131
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_16",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t148",
+      "as_of_index": 147
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_17",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t164",
+      "as_of_index": 163
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_18",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t182",
+      "as_of_index": 181
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_19",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "privacy",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_20",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t116",
+      "as_of_index": 115
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_21",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t132",
+      "as_of_index": 131
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_22",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t148",
+      "as_of_index": 147
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_23",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t164",
+      "as_of_index": 163
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_24",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t182",
+      "as_of_index": 181
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_25",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t182",
+      "as_of_index": 181
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_26",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_27",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_28",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_29",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_30",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_31",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "office_episode_custom_en_006_harbor_harbormark_dual_project_ckpt_32",
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "query_type": "safety",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_01",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t049",
+      "as_of_index": 48
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_02",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t108",
+      "as_of_index": 107
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_03",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t136",
+      "as_of_index": 135
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_04",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t167",
+      "as_of_index": 166
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_05",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t198",
+      "as_of_index": 197
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_06",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t233",
+      "as_of_index": 232
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_07",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t144",
+      "as_of_index": 143
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_08",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t153",
+      "as_of_index": 152
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_09",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t162",
+      "as_of_index": 161
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_10",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t170",
+      "as_of_index": 169
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_11",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t178",
+      "as_of_index": 177
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_12",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t184",
+      "as_of_index": 183
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_13",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t203",
+      "as_of_index": 202
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_14",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t210",
+      "as_of_index": 209
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_15",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t218",
+      "as_of_index": 217
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_16",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t225",
+      "as_of_index": 224
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_17",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t231",
+      "as_of_index": 230
+    },
+    {
+      "id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track_ckpt_18",
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t236",
+      "as_of_index": 235
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_01",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t081",
+      "as_of_index": 80
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_02",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t109",
+      "as_of_index": 108
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_03",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t138",
+      "as_of_index": 137
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_04",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t171",
+      "as_of_index": 170
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_05",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t206",
+      "as_of_index": 205
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_06",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t236",
+      "as_of_index": 235
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_07",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t094",
+      "as_of_index": 93
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_08",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t123",
+      "as_of_index": 122
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_09",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t152",
+      "as_of_index": 151
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_10",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t183",
+      "as_of_index": 182
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_11",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t221",
+      "as_of_index": 220
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_12",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t232",
+      "as_of_index": 231
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_13",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t194",
+      "as_of_index": 193
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_14",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t203",
+      "as_of_index": 202
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_15",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t214",
+      "as_of_index": 213
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_16",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t224",
+      "as_of_index": 223
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_17",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t233",
+      "as_of_index": 232
+    },
+    {
+      "id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track_ckpt_18",
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t236",
+      "as_of_index": 235
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_01",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t080",
+      "as_of_index": 79
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_02",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t098",
+      "as_of_index": 97
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_03",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t110",
+      "as_of_index": 109
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_04",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t134",
+      "as_of_index": 133
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_05",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t156",
+      "as_of_index": 155
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_06",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t174",
+      "as_of_index": 173
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_07",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t092",
+      "as_of_index": 91
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_08",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t128",
+      "as_of_index": 127
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_09",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t146",
+      "as_of_index": 145
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_10",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t181",
+      "as_of_index": 180
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_11",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t223",
+      "as_of_index": 222
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_12",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t236",
+      "as_of_index": 235
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_13",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t194",
+      "as_of_index": 193
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_14",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t203",
+      "as_of_index": 202
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_15",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t214",
+      "as_of_index": 213
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_16",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t225",
+      "as_of_index": 224
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_17",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t233",
+      "as_of_index": 232
+    },
+    {
+      "id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track_ckpt_18",
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t235",
+      "as_of_index": 234
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_01",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t050",
+      "as_of_index": 49
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_02",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t106",
+      "as_of_index": 105
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_03",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t142",
+      "as_of_index": 141
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_04",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t174",
+      "as_of_index": 173
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_05",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_06",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t234",
+      "as_of_index": 233
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_07",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t150",
+      "as_of_index": 149
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_08",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t159",
+      "as_of_index": 158
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_09",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t168",
+      "as_of_index": 167
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_10",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t177",
+      "as_of_index": 176
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_11",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t186",
+      "as_of_index": 185
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_12",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t193",
+      "as_of_index": 192
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_13",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t209",
+      "as_of_index": 208
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_14",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t216",
+      "as_of_index": 215
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_15",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t224",
+      "as_of_index": 223
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_16",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t231",
+      "as_of_index": 230
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_17",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t235",
+      "as_of_index": 234
+    },
+    {
+      "id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track_ckpt_18",
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t236",
+      "as_of_index": 235
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_01",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t084",
+      "as_of_index": 83
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_02",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t104",
+      "as_of_index": 103
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_03",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t137",
+      "as_of_index": 136
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_04",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t169",
+      "as_of_index": 168
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_05",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t206",
+      "as_of_index": 205
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_06",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t228",
+      "as_of_index": 227
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_07",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t083",
+      "as_of_index": 82
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_08",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t117",
+      "as_of_index": 116
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_09",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t149",
+      "as_of_index": 148
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_10",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t181",
+      "as_of_index": 180
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_11",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t217",
+      "as_of_index": 216
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_12",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t226",
+      "as_of_index": 225
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_13",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t191",
+      "as_of_index": 190
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_14",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t201",
+      "as_of_index": 200
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_15",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t213",
+      "as_of_index": 212
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_16",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t220",
+      "as_of_index": 219
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_17",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t224",
+      "as_of_index": 223
+    },
+    {
+      "id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track_ckpt_18",
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t228",
+      "as_of_index": 227
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_01",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t049",
+      "as_of_index": 48
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_02",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t101",
+      "as_of_index": 100
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_03",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t138",
+      "as_of_index": 137
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_04",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t170",
+      "as_of_index": 169
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_05",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t202",
+      "as_of_index": 201
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_06",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t234",
+      "as_of_index": 233
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_07",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t147",
+      "as_of_index": 146
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_08",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t156",
+      "as_of_index": 155
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_09",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t165",
+      "as_of_index": 164
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_10",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t174",
+      "as_of_index": 173
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_11",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t183",
+      "as_of_index": 182
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_12",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t190",
+      "as_of_index": 189
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_13",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t207",
+      "as_of_index": 206
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_14",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t214",
+      "as_of_index": 213
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_15",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t222",
+      "as_of_index": 221
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_16",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t229",
+      "as_of_index": 228
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_17",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t235",
+      "as_of_index": 234
+    },
+    {
+      "id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track_ckpt_18",
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t236",
+      "as_of_index": 235
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_01",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t082",
+      "as_of_index": 81
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_02",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t111",
+      "as_of_index": 110
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_03",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t143",
+      "as_of_index": 142
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_04",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t172",
+      "as_of_index": 171
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_05",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t207",
+      "as_of_index": 206
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_06",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t236",
+      "as_of_index": 235
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_07",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t094",
+      "as_of_index": 93
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_08",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t124",
+      "as_of_index": 123
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_09",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t154",
+      "as_of_index": 153
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_10",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t184",
+      "as_of_index": 183
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_11",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t221",
+      "as_of_index": 220
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_12",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t234",
+      "as_of_index": 233
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_13",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t194",
+      "as_of_index": 193
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_14",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t203",
+      "as_of_index": 202
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_15",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t214",
+      "as_of_index": 213
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_16",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t224",
+      "as_of_index": 223
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_17",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t231",
+      "as_of_index": 230
+    },
+    {
+      "id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track_ckpt_18",
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t236",
+      "as_of_index": 235
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_01",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t057",
+      "as_of_index": 56
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_02",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t086",
+      "as_of_index": 85
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_03",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t114",
+      "as_of_index": 113
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_04",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t142",
+      "as_of_index": 141
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_05",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t174",
+      "as_of_index": 173
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_06",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "utility",
+      "as_of_turn_id": "t198",
+      "as_of_index": 197
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_07",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t070",
+      "as_of_index": 69
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_08",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t096",
+      "as_of_index": 95
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_09",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t123",
+      "as_of_index": 122
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_10",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t140",
+      "as_of_index": 139
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_11",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t176",
+      "as_of_index": 175
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_12",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "privacy",
+      "as_of_turn_id": "t191",
+      "as_of_index": 190
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_13",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t166",
+      "as_of_index": 165
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_14",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t173",
+      "as_of_index": 172
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_15",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t181",
+      "as_of_index": 180
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_16",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t187",
+      "as_of_index": 186
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_17",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t194",
+      "as_of_index": 193
+    },
+    {
+      "id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track_ckpt_18",
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "query_type": "safety",
+      "as_of_turn_id": "t198",
+      "as_of_index": 197
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_01",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t024",
+      "as_of_index": 23
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_02",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t047",
+      "as_of_index": 46
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_03",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t071",
+      "as_of_index": 70
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_04",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t091",
+      "as_of_index": 90
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_05",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t117",
+      "as_of_index": 116
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_06",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t141",
+      "as_of_index": 140
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_07",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t168",
+      "as_of_index": 167
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_08",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t204",
+      "as_of_index": 203
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_09",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t082",
+      "as_of_index": 81
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_10",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t103",
+      "as_of_index": 102
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_11",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t129",
+      "as_of_index": 128
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_12",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t147",
+      "as_of_index": 146
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_13",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t154",
+      "as_of_index": 153
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_14",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t176",
+      "as_of_index": 175
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_15",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t188",
+      "as_of_index": 187
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_16",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t210",
+      "as_of_index": 209
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_17",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t087",
+      "as_of_index": 86
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_18",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t094",
+      "as_of_index": 93
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_19",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t118",
+      "as_of_index": 117
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_20",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t160",
+      "as_of_index": 159
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_21",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t166",
+      "as_of_index": 165
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_22",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t183",
+      "as_of_index": 182
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_23",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t196",
+      "as_of_index": 195
+    },
+    {
+      "id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note_ckpt_24",
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t219",
+      "as_of_index": 218
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_01",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t027",
+      "as_of_index": 26
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_02",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t046",
+      "as_of_index": 45
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_03",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t069",
+      "as_of_index": 68
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_04",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t093",
+      "as_of_index": 92
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_05",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t121",
+      "as_of_index": 120
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_06",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t149",
+      "as_of_index": 148
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_07",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t186",
+      "as_of_index": 185
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_08",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t208",
+      "as_of_index": 207
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_09",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t058",
+      "as_of_index": 57
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_10",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t081",
+      "as_of_index": 80
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_11",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t104",
+      "as_of_index": 103
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_12",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t128",
+      "as_of_index": 127
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_13",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t156",
+      "as_of_index": 155
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_14",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t179",
+      "as_of_index": 178
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_15",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t199",
+      "as_of_index": 198
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_16",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t219",
+      "as_of_index": 218
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_17",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t116",
+      "as_of_index": 115
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_18",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t126",
+      "as_of_index": 125
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_19",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t142",
+      "as_of_index": 141
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_20",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t165",
+      "as_of_index": 164
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_21",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t188",
+      "as_of_index": 187
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_22",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t203",
+      "as_of_index": 202
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_23",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t223",
+      "as_of_index": 222
+    },
+    {
+      "id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service_ckpt_24",
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t224",
+      "as_of_index": 223
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_01",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t025",
+      "as_of_index": 24
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_02",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t056",
+      "as_of_index": 55
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_03",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t068",
+      "as_of_index": 67
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_04",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t085",
+      "as_of_index": 84
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_05",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t107",
+      "as_of_index": 106
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_06",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t148",
+      "as_of_index": 147
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_07",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t184",
+      "as_of_index": 183
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_08",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t223",
+      "as_of_index": 222
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_09",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t035",
+      "as_of_index": 34
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_10",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t056",
+      "as_of_index": 55
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_11",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t067",
+      "as_of_index": 66
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_12",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t060",
+      "as_of_index": 59
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_13",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t068",
+      "as_of_index": 67
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_14",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t072",
+      "as_of_index": 71
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_15",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t073",
+      "as_of_index": 72
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_16",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t082",
+      "as_of_index": 81
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_17",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t188",
+      "as_of_index": 187
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_18",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t194",
+      "as_of_index": 193
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_19",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t200",
+      "as_of_index": 199
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_20",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t206",
+      "as_of_index": 205
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_21",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t212",
+      "as_of_index": 211
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_22",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t218",
+      "as_of_index": 217
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_23",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t221",
+      "as_of_index": 220
+    },
+    {
+      "id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note_ckpt_24",
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t224",
+      "as_of_index": 223
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_01",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t024",
+      "as_of_index": 23
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_02",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t052",
+      "as_of_index": 51
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_03",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t076",
+      "as_of_index": 75
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_04",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t101",
+      "as_of_index": 100
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_05",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t125",
+      "as_of_index": 124
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_06",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t149",
+      "as_of_index": 148
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_07",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t177",
+      "as_of_index": 176
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_08",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t205",
+      "as_of_index": 204
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_09",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t084",
+      "as_of_index": 83
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_10",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t100",
+      "as_of_index": 99
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_11",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t126",
+      "as_of_index": 125
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_12",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t149",
+      "as_of_index": 148
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_13",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t171",
+      "as_of_index": 170
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_14",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t186",
+      "as_of_index": 185
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_15",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t197",
+      "as_of_index": 196
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_16",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t209",
+      "as_of_index": 208
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_17",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t188",
+      "as_of_index": 187
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_18",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t189",
+      "as_of_index": 188
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_19",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t190",
+      "as_of_index": 189
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_20",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t192",
+      "as_of_index": 191
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_21",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t194",
+      "as_of_index": 193
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_22",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t196",
+      "as_of_index": 195
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_23",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t198",
+      "as_of_index": 197
+    },
+    {
+      "id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note_ckpt_24",
+      "episode_id": "household_episode_custom_en_013_coral_pool_coral_cabana_swim_storage_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t220",
+      "as_of_index": 219
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_01",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t026",
+      "as_of_index": 25
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_02",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t048",
+      "as_of_index": 47
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_03",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t071",
+      "as_of_index": 70
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_04",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t089",
+      "as_of_index": 88
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_05",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t114",
+      "as_of_index": 113
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_06",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t136",
+      "as_of_index": 135
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_07",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t162",
+      "as_of_index": 161
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_08",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t200",
+      "as_of_index": 199
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_09",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t082",
+      "as_of_index": 81
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_10",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t101",
+      "as_of_index": 100
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_11",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t129",
+      "as_of_index": 128
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_12",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t142",
+      "as_of_index": 141
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_13",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t149",
+      "as_of_index": 148
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_14",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t173",
+      "as_of_index": 172
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_15",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t187",
+      "as_of_index": 186
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_16",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t209",
+      "as_of_index": 208
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_17",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t088",
+      "as_of_index": 87
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_18",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t094",
+      "as_of_index": 93
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_19",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t118",
+      "as_of_index": 117
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_20",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t160",
+      "as_of_index": 159
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_21",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t166",
+      "as_of_index": 165
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_22",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t182",
+      "as_of_index": 181
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_23",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t195",
+      "as_of_index": 194
+    },
+    {
+      "id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note_ckpt_24",
+      "episode_id": "household_episode_custom_en_009_linden_lesson_linden_listen_tutor_music_private_note",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t219",
+      "as_of_index": 218
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_01",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t029",
+      "as_of_index": 28
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_02",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t053",
+      "as_of_index": 52
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_03",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t072",
+      "as_of_index": 71
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_04",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t079",
+      "as_of_index": 78
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_05",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t098",
+      "as_of_index": 97
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_06",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t102",
+      "as_of_index": 101
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_07",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t117",
+      "as_of_index": 116
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_08",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "utility",
+      "as_of_turn_id": "t151",
+      "as_of_index": 150
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_09",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t051",
+      "as_of_index": 50
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_10",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t068",
+      "as_of_index": 67
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_11",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t103",
+      "as_of_index": 102
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_12",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t126",
+      "as_of_index": 125
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_13",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t151",
+      "as_of_index": 150
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_14",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t166",
+      "as_of_index": 165
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_15",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t181",
+      "as_of_index": 180
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_16",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "privacy",
+      "as_of_turn_id": "t154",
+      "as_of_index": 153
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_17",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t066",
+      "as_of_index": 65
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_18",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t081",
+      "as_of_index": 80
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_19",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t096",
+      "as_of_index": 95
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_20",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t098",
+      "as_of_index": 97
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_21",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t110",
+      "as_of_index": 109
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_22",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t125",
+      "as_of_index": 124
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_23",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t151",
+      "as_of_index": 150
+    },
+    {
+      "id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device_ckpt_24",
+      "episode_id": "household_episode_custom_en_004_beacon_guest_beacon_guestmode_event_device",
+      "domain": "household",
+      "query_type": "safety",
+      "as_of_turn_id": "t217",
+      "as_of_index": 216
+    }
+  ],
+  "source_sha256": {
+    "medical": {
+      "episodes.jsonl": "d4b01f62cbd3457715b5958cf2d07d496c6e59280d28041927e2b3ab8a444b9f",
+      "checkpoints.jsonl": "2447f5905081e6002f16ad14f7f7dc19e14b7181e5ac8ebd08144d68da6437a0"
+    },
+    "office": {
+      "episodes.jsonl": "e15797cc0ab778067e0235377a09811c73182b5e1aa28e2221adc5ef9638a409",
+      "checkpoints.jsonl": "7186bc1dd66b493f994b802bad8817d7aa5e7a91f498d67f87410a98f8116d0c"
+    },
+    "education": {
+      "episodes.jsonl": "5971478a96553c2eb18a9f1e079987275da0cddf6175e40abda8a58525e65862",
+      "checkpoints.jsonl": "2a372a5017a99108c83324d2fed25dbfb7797a2fb25a20fc066ed5b2d05739b5"
+    },
+    "household": {
+      "episodes.jsonl": "e2bb506cc1bdc8dc7b16d4a57610147365798d03eb1c326f9197b6c6221efb6f",
+      "checkpoints.jsonl": "4692c3e1ea91be63debd7b39ccc5fc425bc1a83155c1bfb5c197ba68cefd93ae"
+    }
+  },
+  "model": "deepseek-flash",
+  "embedding": "all-MiniLM-L6-v2",
+  "top_k": 20,
+  "answer_temperature": 0.2,
+  "answer_max_tokens": 4096,
+  "judge_temperature": 0.0,
+  "judge_max_tokens": 4096
+}

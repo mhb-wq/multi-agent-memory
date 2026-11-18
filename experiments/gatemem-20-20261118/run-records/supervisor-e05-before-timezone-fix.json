@@ -1,0 +1,13 @@
+{
+  "selection": "selection-20.json",
+  "status": "stopped_needs_review",
+  "index": 5,
+  "group": "full",
+  "port": 18205,
+  "ledger": "D:\\课题\\多智能体\\ours\\runtime\\gatemem-expanded-20261118\\ledger-e05-full.json",
+  "restarts": 0,
+  "events": [],
+  "last_run_status": "failed",
+  "exit_code": 0,
+  "error": "ValidationError"
+}

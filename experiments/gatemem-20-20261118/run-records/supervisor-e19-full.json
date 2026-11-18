@@ -1,0 +1,56 @@
+{
+  "selection": "selection-20.json",
+  "status": "completed",
+  "index": 19,
+  "group": "full",
+  "port": 18219,
+  "ledger": "D:\\课题\\多智能体\\ours\\runtime\\gatemem-expanded-20261118\\ledger-e19-full.json",
+  "restarts": 5,
+  "events": [
+    {
+      "event": "restart_scheduled",
+      "run_status": "failed",
+      "time": 1794988833.3416457
+    },
+    {
+      "event": "transport_retry",
+      "time": 1794988843.3486683
+    },
+    {
+      "event": "restart_scheduled",
+      "run_status": "failed",
+      "time": 1794989171.4802759
+    },
+    {
+      "event": "transport_retry",
+      "time": 1794989191.487314
+    },
+    {
+      "event": "restart_scheduled",
+      "run_status": "failed",
+      "time": 1794989955.490775
+    },
+    {
+      "event": "transport_retry",
+      "time": 1794989985.5043461
+    },
+    {
+      "event": "restart_scheduled",
+      "run_status": "failed",
+      "time": 1794991199.7035768
+    },
+    {
+      "event": "transport_retry",
+      "time": 1794991239.7228436
+    },
+    {
+      "event": "restart_scheduled",
+      "run_status": "failed",
+      "time": 1794991436.431173
+    },
+    {
+      "event": "transport_retry",
+      "time": 1794991486.4502316
+    }
+  ]
+}

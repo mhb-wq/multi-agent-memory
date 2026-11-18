@@ -1,0 +1,14 @@
+{
+  "status": "completed",
+  "index": 3,
+  "group": "full",
+  "port": 18180,
+  "ledger": "D:\\课题\\多智能体\\ours\\runtime\\gatemem-expanded-20261118\\ledger.json",
+  "restarts": 0,
+  "events": [
+    {
+      "event": "transport_retry",
+      "time": 1794981119.414402
+    }
+  ]
+}

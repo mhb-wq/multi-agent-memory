@@ -1,0 +1,705 @@
+{
+  "dataset": "GateMem",
+  "scope": "frozen prior 20 scenarios; 483 checkpoints; complete method only",
+  "source_manifest": "D:\\课题\\多智能体\\_runs\\gate-latest-first20-20261102\\manifest.json",
+  "episodes": [
+    {
+      "index": 1,
+      "episode_id": "med_episode_rewrite_en_020_anemia_deleted_river_house_line",
+      "domain": "medical",
+      "turns": 194,
+      "checkpoints": 27,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 27,
+          "unique_checkpoints": 27,
+          "duplicate_rows": 0,
+          "judgment_sha256": "c78bad02ed7d615632ac68419bd5467f7dd54f476b6c8e9195f66fcf728eea94"
+        },
+        "mem0": {
+          "judgment_rows": 27,
+          "unique_checkpoints": 27,
+          "duplicate_rows": 0,
+          "judgment_sha256": "4bee44bcbcde13f45e2f76bcea5ebbef7b6672889ec738d28c15f59cd8fdb571"
+        },
+        "amem": {
+          "judgment_rows": 27,
+          "unique_checkpoints": 27,
+          "duplicate_rows": 0,
+          "judgment_sha256": "0725a3e0f118fa11298e462d04e3db116a521cba4e21ed33a5a0289816cd9cef"
+        },
+        "memos": {
+          "judgment_rows": 27,
+          "unique_checkpoints": 27,
+          "duplicate_rows": 0,
+          "judgment_sha256": "ccca3f90efa562cac0a73bfa8a3295170cf006bc6925cf03cdcddf6e2ebde591"
+        }
+      }
+    },
+    {
+      "index": 2,
+      "episode_id": "med_episode_rewrite_en_011_first_seizure_deleted_harbor_steps_line",
+      "domain": "medical",
+      "turns": 199,
+      "checkpoints": 27,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 27,
+          "unique_checkpoints": 27,
+          "duplicate_rows": 0,
+          "judgment_sha256": "f538d02439f1cf7b76059e63db0a8615fe1790c07aefa4121c8f8d69bc9273cb"
+        },
+        "mem0": {
+          "judgment_rows": 27,
+          "unique_checkpoints": 27,
+          "duplicate_rows": 0,
+          "judgment_sha256": "18c53824953f07e6c37e898cff0a61964cc9cbb69f70fabc266edd6deda56aa7"
+        },
+        "amem": {
+          "judgment_rows": 27,
+          "unique_checkpoints": 27,
+          "duplicate_rows": 0,
+          "judgment_sha256": "1ea043bbbbb52af68c7ac7fdb3539e24cff47b67c4babd0b9d74450065ce5d7f"
+        },
+        "memos": {
+          "judgment_rows": 27,
+          "unique_checkpoints": 27,
+          "duplicate_rows": 0,
+          "judgment_sha256": "65b2b787a603962b076bd234fa95e85f757c9ce7d2c907853b5fd414dbaffa23"
+        }
+      }
+    },
+    {
+      "index": 3,
+      "episode_id": "med_episode_rewrite_en_002_cardiology_afib_cardioversion_confidential_backup",
+      "domain": "medical",
+      "turns": 206,
+      "checkpoints": 28,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 28,
+          "unique_checkpoints": 28,
+          "duplicate_rows": 0,
+          "judgment_sha256": "ba59aa6e7d15a0446c4c917e57f2ad0b8dadadc7820fcd6a0e51f1cafc257f8a"
+        },
+        "mem0": {
+          "judgment_rows": 28,
+          "unique_checkpoints": 28,
+          "duplicate_rows": 0,
+          "judgment_sha256": "8e003d48efc6f2bd2f1f9cb4b0959edba36831a067ea095a2306b8ce337fc556"
+        },
+        "amem": {
+          "judgment_rows": 28,
+          "unique_checkpoints": 28,
+          "duplicate_rows": 0,
+          "judgment_sha256": "b22309d4c3a06acf8badcf77eac2c6c7dc01150ea641972e9b2d6bead51e65f6"
+        },
+        "memos": {
+          "judgment_rows": 28,
+          "unique_checkpoints": 28,
+          "duplicate_rows": 0,
+          "judgment_sha256": "17b56c988c663206987b412809ec20c8674b597992e705d90136c294ef43641b"
+        }
+      }
+    },
+    {
+      "index": 4,
+      "episode_id": "med_episode_rewrite_en_014_lupus_nephritis_deleted_river_house_line",
+      "domain": "medical",
+      "turns": 198,
+      "checkpoints": 29,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 29,
+          "unique_checkpoints": 29,
+          "duplicate_rows": 0,
+          "judgment_sha256": "146bd5154b61d3c59bcaef3c556df8b939c4c47de92f352ab4cf00028004733f"
+        },
+        "mem0": {
+          "judgment_rows": 29,
+          "unique_checkpoints": 29,
+          "duplicate_rows": 0,
+          "judgment_sha256": "ab6687eb6f0f5194f4c12a4213b62fc1d75834119de9fa1f9b07779779a5a57a"
+        },
+        "amem": {
+          "judgment_rows": 29,
+          "unique_checkpoints": 29,
+          "duplicate_rows": 0,
+          "judgment_sha256": "f4f7a63e9b8f79043d52f7590508dbd5a1b48facd8fa4586ec3c5be82dd3c55d"
+        },
+        "memos": {
+          "judgment_rows": 29,
+          "unique_checkpoints": 29,
+          "duplicate_rows": 0,
+          "judgment_sha256": "eccd845be9130d6221440a14895349f6e9e2cecba10301ce398aea8665162567"
+        }
+      }
+    },
+    {
+      "index": 5,
+      "episode_id": "med_episode_rewrite_en_005_behavioral_bridge_deleted_blue_cedar_contact",
+      "domain": "medical",
+      "turns": 206,
+      "checkpoints": 28,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 28,
+          "unique_checkpoints": 28,
+          "duplicate_rows": 0,
+          "judgment_sha256": "f3f90bdeaae6cd336ae480c1d97ed19d523907d8ef46d8fbbc6f324df826cc2a"
+        },
+        "mem0": {
+          "judgment_rows": 28,
+          "unique_checkpoints": 28,
+          "duplicate_rows": 0,
+          "judgment_sha256": "025d855614a42621ed465f45d346b4f5579b98460df5fe8ec785bde3ecd19b27"
+        },
+        "amem": {
+          "judgment_rows": 28,
+          "unique_checkpoints": 28,
+          "duplicate_rows": 0,
+          "judgment_sha256": "0b8548823e3a2942543bd3240315dfa3f3f3028d6bd8f06af2e50e7ffef57d75"
+        },
+        "memos": {
+          "judgment_rows": 28,
+          "unique_checkpoints": 28,
+          "duplicate_rows": 0,
+          "judgment_sha256": "2041c2cb64e91b0ccfbd01cdba0c8ab3bccfa5ea2044b334de5bb19e17e477e5"
+        }
+      }
+    },
+    {
+      "index": 6,
+      "episode_id": "office_episode_custom_en_016_anchor_anchorline_dual_project",
+      "domain": "office",
+      "turns": 240,
+      "checkpoints": 32,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "e657d170555bb873ff5d55d69882bb4c273a276d1df3bcbd4deb7821ceffbcc8"
+        },
+        "mem0": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "e2cade248ab14b0b00b6692acc5e2282dfbce58f893de1b4eb97ce6333631546"
+        },
+        "amem": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "830ae78af569a600fbb0ecf1c0d615c88fb66e0bdd15b7523f9163669ce9fed3"
+        },
+        "memos": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "33341ba48c1fa46070e4f61296e478365a1b86435c830175e7b64866d90a9a2d"
+        }
+      }
+    },
+    {
+      "index": 7,
+      "episode_id": "office_episode_custom_en_008_horizon_horizonline_dual_project",
+      "domain": "office",
+      "turns": 240,
+      "checkpoints": 32,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 35,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 3,
+          "judgment_sha256": "d0075eac12d5190f6a97d080994bdc6458fa05da7df1b064a464f93b2cf4403d"
+        },
+        "mem0": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "9cb60077caa96bb75005fe9a5e92d2e3c31962d074799f13d8057a1b89f44e79"
+        },
+        "amem": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "61665704542b816b2e83b4b5cc231e580d1d266f73d443db1e4c73acaa97cc10"
+        },
+        "memos": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "9f5195574bb74483fc77e83c79b39a451dd8964e05f5d63ea8d51428a8fcc893"
+        }
+      }
+    },
+    {
+      "index": 8,
+      "episode_id": "office_episode_custom_en_001_maple_maplemark_dual_project",
+      "domain": "office",
+      "turns": 240,
+      "checkpoints": 32,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "2007c1db49f4f44ac3017018d00c99ed02415330d85268b8c5845cafd0d8366e"
+        },
+        "mem0": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "d4ba833382acdc38faab5466c361b2293183a97f19489ca768813bb69d49288e"
+        },
+        "amem": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "65d978dcf68ff64dc3c3253c53835c33402a473a6942c70131767596ffd7a260"
+        },
+        "memos": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "373a6ee2fd889a1adfb319353de6e32049b86e68212677d97427f6f7c2ea10be"
+        }
+      }
+    },
+    {
+      "index": 9,
+      "episode_id": "office_episode_custom_en_006_harbor_harbormark_dual_project",
+      "domain": "office",
+      "turns": 240,
+      "checkpoints": 32,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "1be68d24edfe050016dddc7062f4c4d7b63cc10f0de874c546bf28d5c363ca16"
+        },
+        "mem0": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "14076966552ccf7f33d86e78cfdc0b469824def6420ff761567729c77ee368f1"
+        },
+        "amem": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "90b1f1ed4ac94aabb12e0c7f441ca7c2662acd685bd5534f0352b843d998464f"
+        },
+        "memos": {
+          "judgment_rows": 32,
+          "unique_checkpoints": 32,
+          "duplicate_rows": 0,
+          "judgment_sha256": "d8da58ca6ca3d31b570b81fc42ebdf94d8c37429492b81d4b893881496f62325"
+        }
+      }
+    },
+    {
+      "index": 10,
+      "episode_id": "education_episode_custom_en_020_granite_audit_granite_guides_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "f2e267f26bbfbdbf33f72a805c42e9a6c01d13bfc8c40095b64150757c00c492"
+        },
+        "mem0": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "cb99053ecaa945fc64977a97d546efa4a1606227adb7ac9238de835fee89ecc4"
+        },
+        "amem": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "2eeec987483eaa45710c849c729dbaf0a0143517e4fb7aecb3224d54dbbc9684"
+        },
+        "memos": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "a9da4235c849831914c09bdd9be220fd25beff382151d2128621157b97db3ca5"
+        }
+      }
+    },
+    {
+      "index": 11,
+      "episode_id": "education_episode_custom_en_019_willow_transfer_willow_tutors_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "fee64935c17b197f9c84cb727ffe6d0d843e5b016665576b43be87c21999a411"
+        },
+        "mem0": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "57a42fab05d7ab00622192afa965c803ec01058449a150e70e0d6ad016916fd2"
+        },
+        "amem": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "ba0ff45d91bad9cf6cc2daa43cbd5c8e9795bcc2173867ea334b648f2f18d499"
+        },
+        "memos": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "3f7fd22e1f23dedf9e0563dbcf225fe851c1b050cae8100ea15e8fceee5046cd"
+        }
+      }
+    },
+    {
+      "index": 12,
+      "episode_id": "education_episode_custom_en_016_crescent_petition_crescent_partners_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "a5f2d4f14ab3859d5f7234489cddef211b2c56186fd018155b575ab946922ad9"
+        },
+        "mem0": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "34634f7e23fd86e5d8c30fbd53c4a187a46ce1c0fe3b91eff0500eee2cc54aaa"
+        },
+        "amem": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "75f7ec27cbdfbd33f9c319a42165dd897c25230829c457a9525de2acacea8cca"
+        },
+        "memos": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "f9ab73bff60e1dbba9c3cb618351bd06bb312c34c3c9192c6c608d5a5d8c2622"
+        }
+      }
+    },
+    {
+      "index": 13,
+      "episode_id": "education_episode_custom_en_024_cascade_exception_cascade_guides_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "408f2c9e2890a59ef9e096576e95e2ad2512eff6a27a207572402b44559d08eb"
+        },
+        "mem0": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "fbf57f64440d577e486063d810d76b276f0f4b5cf9619336d032ac0451cac22b"
+        },
+        "amem": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "1b2a27d843557c4425abd601a3e67f81a5957ae766b8e386b340865872a264b6"
+        },
+        "memos": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "bc79488a0a5a6b16b4a72a57c1aad87dc67e5680d7d243efda2870fede6898d2"
+        }
+      }
+    },
+    {
+      "index": 14,
+      "episode_id": "education_episode_custom_en_009_tidal_exchange_tidal_leaders_dual_track",
+      "domain": "education",
+      "turns": 228,
+      "checkpoints": 18,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "7b40aac3eb7ed4fbd84d318f6de34f38fb9745b9186a57dad083b6ba630f2402"
+        },
+        "mem0": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "22d31c001c3b4d3082df3e8df24e37bf90f8b473aaa1644afbe7e3af193a526f"
+        },
+        "amem": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "d6208a1d30d67c8282acb547fd8227b7b6c2f5f2cc4f8a25168b29e6f43aa807"
+        },
+        "memos": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "47d71ea3977006ecaa4a40ad2aa5049a6e5ba06520dfab72924df43158b77676"
+        }
+      }
+    },
+    {
+      "index": 15,
+      "episode_id": "education_episode_custom_en_023_lattice_petition_lattice_leaders_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "87500721dd2b9e485e1ddddac376f6b2805afafe552f5a201ab024b535cdc85e"
+        },
+        "mem0": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "00cdbc9a40264d9e5f6239c952b674c8a313358631f2acdd2d045ced86c2fd69"
+        },
+        "amem": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "0f0040b399b0e6c1c90b63b37b214b5e2ccc6237708ec2b6dc207259a05ef78f"
+        },
+        "memos": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "07d7c74f269b2ddb74ecd71ef2a7b3ad6ae605d8be27a23ecb66588ce5901e6f"
+        }
+      }
+    },
+    {
+      "index": 16,
+      "episode_id": "education_episode_custom_en_015_aster_waiver_aster_fellows_dual_track",
+      "domain": "education",
+      "turns": 236,
+      "checkpoints": 18,
+      "missing_timestamps": 236,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "55c05ee32ddc824ab10f8dbf6421fbb96a4b9cdaa7cd86b6be5262420887abc6"
+        },
+        "mem0": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "3257868de63079e3feabafe66344fadd37c99dc0d24360fd9c437ab2ee0d0da2"
+        },
+        "amem": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "dfdf7fb9f3c8061ff2058b0984e693e7c6b8b2fdcd3038c6d1f212a94c0e2113"
+        },
+        "memos": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "60772db29e6f3ca1462dae014d95962b637dff47f8e4a1b3ae7746c16b246162"
+        }
+      }
+    },
+    {
+      "index": 17,
+      "episode_id": "education_episode_custom_en_006_harbor_review_harbor_leaders_dual_track",
+      "domain": "education",
+      "turns": 198,
+      "checkpoints": 18,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "9d02e8c89e1eec9a521221463141b79d12bc0df46a8c4c00364d771f23689fe4"
+        },
+        "mem0": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "870ddcbb75200ceff166f9288b6f4f91ac52855ccc9457febd86e587ef9b3573"
+        },
+        "amem": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "fe2f8b1c89ef7a071daa75ec4a069952b765b9a63f59787df4a4827193f789c7"
+        },
+        "memos": {
+          "judgment_rows": 18,
+          "unique_checkpoints": 18,
+          "duplicate_rows": 0,
+          "judgment_sha256": "575d6dd2d45bb597eeb7487e976137596fdee4828a4274b9d453ba00e8814d9c"
+        }
+      }
+    },
+    {
+      "index": 18,
+      "episode_id": "household_episode_custom_en_010_rowan_wardrobe_rowan_wash_tailor_linen_private_note",
+      "domain": "household",
+      "turns": 224,
+      "checkpoints": 24,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "c9a30cbadfe9f03431f2c1fe488a948a3cb5b543987a3f6e282302e515d87917"
+        },
+        "mem0": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "f2eac4b86e07e63c92a4cfff84064a7e3fb12d055f8335b84fc184ba29154793"
+        },
+        "amem": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "1a96d0f8920f4bef06d27ed76241295d466766d6b5e399765271089a7b17cc33"
+        },
+        "memos": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "978084ad0e7a80c1844a7f922a6d3fa772966827abde92fad56950a77d1d8b0a"
+        }
+      }
+    },
+    {
+      "index": 19,
+      "episode_id": "household_episode_custom_en_003_maple_watch_maple_works_travel_service",
+      "domain": "household",
+      "turns": 224,
+      "checkpoints": 24,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "4636e48f1dbcfebd0a10237e0bfa59fadc485eaab325d0651c6ee26f607b042c"
+        },
+        "mem0": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "ad1b85e185883f4c7d9bca932e74cc4b581fd04cff7dcf371f869116787d10a2"
+        },
+        "amem": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "d333e088236fbf4651f44e0f3cbd25c4ff01928224e3c503794cef44f3c0899b"
+        },
+        "memos": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "8d248144b9661408d3972ab1a79a98d48928d2f443e81f52550fe6f2158cfaa0"
+        }
+      }
+    },
+    {
+      "index": 20,
+      "episode_id": "household_episode_custom_en_015_magnolia_frames_magnolia_freeze_gallery_meal_private_note",
+      "domain": "household",
+      "turns": 224,
+      "checkpoints": 24,
+      "missing_timestamps": 0,
+      "baselines": {
+        "naive_rag": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "f01b82db12c1699aee0fe86b0039b90a5b62c3c3c7ce15c20c50a77326ab0bb7"
+        },
+        "mem0": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "e8b1dba6e0b0e39615289033bf0c83269791963a7ab1a6595af5bb900312a0c1"
+        },
+        "amem": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "b44e3406951ad893582ea3ae38048873409260c57c63d367bb519c33959b07f0"
+        },
+        "memos": {
+          "judgment_rows": 24,
+          "unique_checkpoints": 24,
+          "duplicate_rows": 0,
+          "judgment_sha256": "4a7a2e45f51a6072b7bb580b58057ea8eb4898fca8e7001f4d69572b99d61d51"
+        }
+      }
+    }
+  ],
+  "model": "deepseek-flash",
+  "embedding": "all-MiniLM-L6-v2",
+  "thinking": "disabled",
+  "historical_baselines_only": true,
+  "previous_three_reused": [
+    3,
+    16,
+    18
+  ],
+  "prior_three_selection_note": "selected as diagnostic prior to this full 20-scenario run; results must not be reported as independent holdout",
+  "hashes": {
+    "src/ours_memory/multiuser.py": "71958d191aed4b89b241034616da0751f6959c8c9ef16bfd3ca0744c4e1fb6dc",
+    "src/ours_memory/prompts.py": "38925fc2b868037d11414e70d9dcf6002c5db19b8d122cc143d47d0e3626997d",
+    "experiments/gatemem/expanded_20261118.py": "3ebf618ec4780f46d0de83477de5a8688911eae41b9982dbeec3e06f0c133380",
+    "experiments/gatemem/background_supervisor.py": "fc789c63970459e292e4fc3810a791bd9ad31f29256ff62d2c330fd5c9665000",
+    "experiments/gatemem/official/code/bench/prompts/query_prompt.txt": "721a4c07a11e252e3c480aaf4a733adee1c761038bba9ef64ab65676660895f9",
+    "experiments/gatemem/official/code/bench/prompts/judge_prompt.txt": "8301e6633011f767f83bf4c2082241bb537de7ef1f995ce1a8b87f8648450ea3"
+  }
+}
