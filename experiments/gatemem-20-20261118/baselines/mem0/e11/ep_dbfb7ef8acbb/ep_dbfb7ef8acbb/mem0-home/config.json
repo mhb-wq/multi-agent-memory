@@ -1,0 +1,10 @@
+{
+    "notice_state": {
+        "first_run": {
+            "consumed": true,
+            "consumed_at": "2026-10-27T15:00:15.986364+00:00",
+            "trigger_function": "add",
+            "variant": "holdout"
+        }
+    }
+}
