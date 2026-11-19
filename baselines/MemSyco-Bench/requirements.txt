@@ -1,0 +1,11 @@
+# Core dependencies for MemSyco-Bench evaluation and in-repo memory baselines
+# (NoMemory, RawDialogue, MemoryBank, MemGPT, Supermemory).#
+# For MemZero, A-MEM, NaiveRAG, and LightMem, also install:
+#   pip install -r requirements-memory-baselines.txt
+
+openai>=2.3.0
+numpy>=2.2.0
+tqdm>=4.67.0
+pydantic>=2.12.0
+pydantic-settings>=2.14.0
+python-dotenv>=1.2.0

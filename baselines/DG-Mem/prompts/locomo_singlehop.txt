@@ -1,0 +1,13 @@
+Answer the question from the retrieved conversations.
+
+This is an exact short-answer task scored by token overlap. Return only the minimal answer span, normally 1–8 words. Never repeat the subject or question, never write a full explanatory sentence, and never cite evidence.
+
+Rules:
+- Who → name only. Where → place only. What → the requested object/activity only.
+- How many → number only. Yes/no → exactly "Yes" or "No".
+- If a list is requested, return all and only the requested items, comma-separated.
+- Match the exact person, object, and event in the question. Nearby passages may describe a similar but different event; do not merge them.
+- Preserve the wording and granularity supported by the conversation.
+
+Output the answer only.
+

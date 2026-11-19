@@ -1,0 +1,196 @@
+[experiment]
+name = "groupmemrag-groupmembench"
+llm_profile = "groupmembench_final"
+
+[run]
+retriever = "dual_graph"
+conversation_json = "../../GroupMemBench/data/final/Finance/synthetic_domain_channels_rolevariants_Finance.json"
+questions_jsonl = "../../GroupMemBench/questions/Finance/knowledge_update.jsonl"
+output_jsonl = "../outputs/groupmembench/predictions.jsonl"
+index_dir = "../cache/groupmembench"
+reuse_index = false
+top_k = 10
+question_limit = 0
+evaluate = false
+judge = true
+qa_workers = 4
+resume = false
+agent_prompt = "../prompts/groupmembench_reader.txt"
+judge_prompt = "../../GroupMemBench/prompts/hipporag_judge_system.txt"
+
+[embedding]
+provider = "sentence_transformer"
+model = "sentence-transformers/all-MiniLM-L6-v2"
+device = "auto"
+batch_size = 64
+
+[entity]
+provider = "spacy"
+model = "en_core_web_sm"
+device = "cpu"
+batch_size = 64
+
+[reranker]
+provider = "sentence_transformer"
+model = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+device = "auto"
+batch_size = 64
+
+[memory_graph]
+ppr_damping = 0.85
+ppr_max_iterations = 40
+ppr_tolerance = 1e-7
+reply_edge_weight = 1.50
+temporal_edge_weight = 0.20
+same_phase_edge_weight = 0.10
+temporal_half_life_hours = 168.0
+dense_weight = 0.25
+ppr_weight = 0.50
+bm25_weight = 0.25
+entity_seed_weight = 1.0
+dense_seed_top_k = 32
+entity_seed_top_k = 3
+entity_similarity_threshold = 0.45
+bm25_k1 = 1.2
+bm25_b = 0.75
+candidate_pool = 64
+
+[user_context_graph]
+ppr_damping = 0.85
+ppr_max_iterations = 40
+ppr_tolerance = 1e-7
+author_edge_weight = 1.50
+context_edge_weight = 1.00
+user_context_edge_weight = 0.35
+role_edge_weight = 0.50
+reply_edge_weight = 1.20
+mention_edge_weight = 1.00
+memory_seed_weight = 1.00
+lexical_seed_weight = 0.80
+asker_seed_weight = 1.50
+self_query_asker_seed_scale = 0.75
+non_self_asker_seed_weight = 0.15
+context_seed_weight = 0.60
+memory_weight = 0.50
+context_bm25_weight = 0.25
+user_ppr_weight = 0.20
+compatibility_weight = 0.05
+context_match_weight = 0.08
+evidence_state_weight = 0.07
+reranker_weight = 0.35
+field_match_weight = 0.20
+sentence_reranking = true
+diversity_weight = 0.08
+same_author_penalty = 0.02
+query_aware_fusion = true
+self_query_ppr_scale = 0.75
+self_query_compatibility_scale = 1.50
+contextual_query_context_scale = 1.50
+state_query_evidence_scale = 1.50
+candidate_pool = 64
+
+[llm_profiles.openai.agent]
+provider = "openai"
+model = "gpt-5"
+api_key_env = "OPENAI_API_KEY"
+base_url_env = "OPENAI_BASE_URL"
+max_tokens = 512
+max_tokens_field = "max_completion_tokens"
+send_temperature = false
+
+[llm_profiles.openai.judge]
+provider = "openai"
+model = "gpt-5"
+api_key_env = "OPENAI_API_KEY"
+base_url_env = "OPENAI_BASE_URL"
+max_tokens = 256
+max_tokens_field = "max_completion_tokens"
+send_temperature = false
+
+[llm_profiles.qwen.agent]
+provider = "qwen"
+model = "qwen-plus"
+api_key_env = "DASHSCOPE_API_KEY"
+max_tokens = 512
+
+[llm_profiles.qwen.judge]
+provider = "qwen"
+model = "qwen-plus"
+api_key_env = "DASHSCOPE_API_KEY"
+max_tokens = 256
+
+[llm_profiles.siliconflow.agent]
+provider = "siliconflow"
+model = "Qwen/Qwen2.5-14B-Instruct"
+api_key_env = "SILICONFLOW_API_KEY"
+base_url = "https://api.siliconflow.cn/v1"
+base_url_env = "SILICONFLOW_BASE_URL"
+max_tokens = 512
+temperature = 0.0
+
+[llm_profiles.siliconflow.judge]
+provider = "siliconflow"
+model = "Qwen/Qwen2.5-14B-Instruct"
+api_key_env = "SILICONFLOW_API_KEY"
+base_url = "https://api.siliconflow.cn/v1"
+base_url_env = "SILICONFLOW_BASE_URL"
+max_tokens = 256
+temperature = 0.0
+
+[llm_profiles.relay.agent]
+provider = "relay"
+model = "gpt-5"
+api_key_env = "RELAY_API_KEY"
+base_url_env = "RELAY_BASE_URL"
+max_tokens = 512
+max_tokens_field = "max_completion_tokens"
+send_temperature = false
+extra_body = { reasoning_effort = "none" }
+
+[llm_profiles.relay.judge]
+provider = "relay"
+model = "gpt-5"
+api_key_env = "RELAY_API_KEY"
+base_url_env = "RELAY_BASE_URL"
+max_tokens = 256
+max_tokens_field = "max_completion_tokens"
+send_temperature = false
+extra_body = { reasoning_effort = "none" }
+
+[llm_profiles.groupmembench_final.agent]
+provider = "relay"
+model = "gpt-5"
+api_key_env = "RELAY_API_KEY"
+base_url_env = "RELAY_BASE_URL"
+max_tokens = 4096
+max_tokens_field = "max_completion_tokens"
+send_temperature = false
+extra_body = { reasoning_effort = "minimal" }
+
+[llm_profiles.groupmembench_final.judge]
+provider = "relay"
+model = "gpt-5"
+api_key_env = "RELAY_API_KEY"
+base_url_env = "RELAY_BASE_URL"
+max_tokens = 4096
+max_tokens_field = "max_completion_tokens"
+send_temperature = false
+extra_body = { reasoning_effort = "minimal" }
+
+[llm_profiles.relay2.agent]
+provider = "relay2"
+model = "gpt-4o-mini"
+api_key_env = "RELAY2_API_KEY"
+base_url = "RELAY2_BASE_URL"
+base_url_env = "RELAY2_BASE_URL"
+max_tokens = 512
+temperature = 0.0
+
+[llm_profiles.relay2.judge]
+provider = "relay2"
+model = "gpt-4o-mini"
+api_key_env = "RELAY2_API_KEY"
+base_url = "RELAY2_BASE_URL"
+base_url_env = "RELAY2_BASE_URL"
+max_tokens = 256
+temperature = 0.0

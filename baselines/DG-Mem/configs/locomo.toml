@@ -1,0 +1,127 @@
+[experiment]
+name = "groupmemrag-locomo"
+llm_profile = "relay2"
+
+[run]
+retriever = "dual_graph"
+conversation_json = "../../locomo/data/locomo10.json"
+questions_jsonl = ""
+output_jsonl = "../outputs/locomo/retrieval.jsonl"
+index_dir = "../cache/locomo"
+reuse_index = false
+top_k = 5
+question_limit = 0
+evaluate = false
+judge = false
+qa_workers = 4
+resume = false
+agent_prompt = ""
+judge_prompt = ""
+
+[embedding]
+provider = "sentence_transformer"
+model = "BAAI/bge-m3"
+device = "auto"
+batch_size = 64
+
+[entity]
+provider = "regex"
+model = ""
+device = "cpu"
+batch_size = 64
+
+[reranker]
+provider = "sentence_transformer"
+model = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+device = "auto"
+batch_size = 64
+
+[memory_graph]
+ppr_damping = 0.85
+ppr_max_iterations = 40
+ppr_tolerance = 1e-7
+reply_edge_weight = 1.50
+temporal_edge_weight = 0.20
+same_phase_edge_weight = 0.10
+temporal_half_life_hours = 168.0
+dense_weight = 0.25
+ppr_weight = 0.50
+bm25_weight = 0.25
+entity_seed_weight = 1.0
+dense_seed_top_k = 32
+entity_seed_top_k = 3
+entity_similarity_threshold = 0.45
+bm25_k1 = 1.2
+bm25_b = 0.75
+candidate_pool = 64
+
+[user_context_graph]
+ppr_damping = 0.85
+ppr_max_iterations = 40
+ppr_tolerance = 1e-7
+author_edge_weight = 1.50
+context_edge_weight = 1.00
+user_context_edge_weight = 0.35
+role_edge_weight = 0.50
+reply_edge_weight = 1.20
+mention_edge_weight = 1.00
+memory_seed_weight = 1.00
+lexical_seed_weight = 0.80
+asker_seed_weight = 1.50
+self_query_asker_seed_scale = 0.75
+non_self_asker_seed_weight = 0.15
+context_seed_weight = 0.60
+memory_weight = 0.50
+context_bm25_weight = 0.15
+user_ppr_weight = 0.05
+compatibility_weight = 0.0
+context_match_weight = 0.0
+evidence_state_weight = 0.0
+reranker_weight = 0.50
+field_match_weight = 0.0
+sentence_reranking = true
+diversity_weight = 0.18
+same_author_penalty = 0.0
+query_aware_fusion = false
+self_query_ppr_scale = 0.75
+self_query_compatibility_scale = 1.50
+contextual_query_context_scale = 1.50
+state_query_evidence_scale = 1.50
+candidate_pool = 64
+
+[llm_profiles.siliconflow.agent]
+provider = "siliconflow"
+model = "Qwen/Qwen2.5-14B-Instruct"
+api_key_env = "SILICONFLOW_API_KEY"
+base_url = "https://api.siliconflow.cn/v1"
+base_url_env = "SILICONFLOW_BASE_URL"
+max_tokens = 512
+temperature = 0.0
+
+[llm_profiles.siliconflow.judge]
+provider = "siliconflow"
+model = "Qwen/Qwen2.5-14B-Instruct"
+api_key_env = "SILICONFLOW_API_KEY"
+base_url = "https://api.siliconflow.cn/v1"
+base_url_env = "SILICONFLOW_BASE_URL"
+max_tokens = 512
+temperature = 0.0
+
+[llm_profiles.relay2.agent]
+provider = "relay2"
+model = "gpt-4o-mini"
+api_key_env = "RELAY2_API_KEY"
+base_url = "RELAY2_BASE_URL"
+base_url_env = "RELAY2_BASE_URL"
+max_tokens = 512
+temperature = 0.0
+
+[llm_profiles.relay2.judge]
+provider = "relay2"
+model = "gpt-4o-mini"
+api_key_env = "RELAY2_API_KEY"
+base_url = "RELAY2_BASE_URL"
+base_url_env = "RELAY2_BASE_URL"
+max_tokens = 512
+temperature = 0.0
+

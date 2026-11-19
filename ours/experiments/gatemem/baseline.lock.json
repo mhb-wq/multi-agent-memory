@@ -1,0 +1,23 @@
+{
+  "dataset": "GateMem",
+  "baseline": "A-MEM",
+  "implementation": "GateMem official benchmark-adapted A-MEM style agent",
+  "source": "https://github.com/rzhub/GateMem",
+  "commit": "a983828b3bb7565e16e25ac8cdc2fc1982633b0b",
+  "entry": "bench.agents.a_mem.AMemAgent",
+  "metadata_mode": "llm",
+  "link_top_m": 3,
+  "link_score_threshold": 0.15,
+  "graph_expand_hops": 1,
+  "graph_expand_per_hit": 2,
+  "rerank_role_bonus": 0.08,
+  "rerank_entity_bonus": 0.06,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "top_k": 10,
+  "answer_model": "deepseek-flash",
+  "metadata_temperature": 0.0,
+  "metadata_max_tokens": 1000,
+  "answer_temperature": 0.2,
+  "answer_max_tokens": 512,
+  "note": "The benchmark-maintained implementation differs from the A-MEM reproduction used for GroupMemBench and PERMA. Existing GateMem A-MEM smoke results predate this change."
+}

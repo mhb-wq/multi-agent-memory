@@ -1,0 +1,35 @@
+._*
+.DS_Store
+__pycache__/
+
+dist/*.tar.gz
+dist/*.tar.gz.part
+dist/conda-pack.log
+.env
+.env.*
+!.env.example
+
+**/embedding_cache/
+# Method package and benchmark artifacts
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+datasets/
+outputs/
+
+# Local model checkpoints
+models/
+
+# External RL inputs and backend dependencies
+training_data/
+dpo-dataset/
+Megatron-LM/
+*.pt
+*.pth
+*.safetensors
+wandb/
+
+# Keep vendored model architecture definitions (not checkpoints)
+!slime/scripts/models/
+!slime/scripts/models/*.sh

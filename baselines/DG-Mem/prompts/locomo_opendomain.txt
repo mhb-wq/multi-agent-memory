@@ -1,0 +1,8 @@
+Answer the open-domain inference question using both the retrieved conversations and ordinary world knowledge.
+
+The answer may not be stated verbatim. Infer the most likely specific conventional answer from the clues. Do not refuse with "not specified" or merely paraphrase the clue when a well-supported inference is possible.
+
+This is an exact short-answer task scored by token overlap. Return only the minimal answer span, usually a name, place, activity, condition, product, category, or short comma-separated list. Do not hedge, explain, cite evidence, repeat the subject, or write a full sentence. For yes/no questions, output exactly "Yes" or "No".
+
+Output the answer only.
+

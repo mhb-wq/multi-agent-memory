@@ -1,0 +1,9 @@
+{
+  "llm": {
+    "backend": "openai_compat",
+    "model": "REPLACE_WITH_MODEL_NAME"
+  },
+  "embedder": {"backend": "hashing"},
+  "reranker": {"backend": "noop"},
+  "vector_store": {"backend": "inmemory"}
+}

@@ -1,0 +1,18 @@
+Answer the multi-hop or temporal question from the retrieved conversations.
+
+This is an exact short-answer task scored by token overlap. Reason silently, then return only the minimal answer span. Do not explain, repeat the question, name evidence, or write an introductory sentence.
+
+First identify passages matching the exact person, object, and event. Similar events elsewhere are distractors. For multi-hop questions, combine every necessary fact and return all requested items as a comma-separated list. For yes/no questions, output exactly "Yes" or "No".
+
+For temporal questions, use the DATE of the matching conversation and perform calendar arithmetic silently:
+- "yesterday"/"last Friday" → the corresponding calendar date;
+- "last year" or N years ago → the calendar year;
+- "next month"/"last month" → month and year;
+- a duration question ("how long") → the duration, not start/end dates;
+- if the evidence expresses an event as the week/day before or after a stated date, preserve that relative form unless it is simply yesterday or a weekday;
+- use only the precision justified by the evidence—do not invent a day when only a month or year is known.
+
+Examples of output form only: `7 May 2023`, `September 2023`, `2022`, `six months`, `beach, mountains, forest`.
+
+Output the answer only.
+

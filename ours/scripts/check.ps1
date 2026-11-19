@@ -1,0 +1,18 @@
+$ErrorActionPreference = "Stop"
+$ProjectRoot = Split-Path $PSScriptRoot -Parent
+Push-Location $ProjectRoot
+try {
+    $env:NO_PROXY = "127.0.0.1,localhost"
+    $env:PYTHONPATH = Join-Path $ProjectRoot "src"
+    & .venv/Scripts/python.exe -X utf8 -m ruff check src tests scripts
+    if ($LASTEXITCODE) { throw "Lint failed" }
+    & .venv/Scripts/python.exe -X utf8 -m ruff format --check src tests scripts
+    if ($LASTEXITCODE) { throw "Format check failed" }
+    & .venv/Scripts/python.exe -X utf8 -m pytest tests -q --junitxml=reports/tests.xml
+    if ($LASTEXITCODE) { throw "Tests failed" }
+    $DemoPath = "runtime/demo-" + (Get-Date -Format "yyyyMMdd-HHmmss")
+    & .venv/Scripts/python.exe -X utf8 -m ours_memory.cli demo-v2 --output ($DemoPath + "-multiuser")
+    if ($LASTEXITCODE) { throw "Multi-user native integration demo failed" }
+} finally {
+    Pop-Location
+}
