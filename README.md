@@ -22,7 +22,11 @@ EGMemory 的多轮原生读取在本接入中每题共享 `top_k` 条不同记�
 
 ## 环境与实验
 
-按各目录的依赖说明创建独立 Python 环境。我们的方法与状态维护说明见 [`ours/README.md`](ours/README.md) 和 [`ours/docs/联合判断校验与恢复.md`](ours/docs/联合判断校验与恢复.md)。九个基线的 GateMem 适配测试可在 `baselines/GateMem` 下运行：
+按各目录的依赖说明创建独立 Python 环境。我们的方法与状态维护说明见 [`ours/README.md`](ours/README.md) 和 [`ours/docs/联合判断校验与恢复.md`](ours/docs/联合判断校验与恢复.md)。
+
+我们的方法可通过同一启动器使用 `--agent ours` 运行，`--domain all` 覆盖全部四个领域；配置、模型身份、依赖和恢复限制见 [`ours/docs/GateMem正式入口.md`](ours/docs/GateMem正式入口.md)。
+
+九个基线的 GateMem 适配测试可在 `baselines/GateMem` 下运行：
 
 ```powershell
 python -m unittest discover -s tests -p 'test_external_baselines.py' -v

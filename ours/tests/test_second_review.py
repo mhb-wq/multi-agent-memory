@@ -11,7 +11,8 @@ from unittest.mock import MagicMock
 import test_memory as original
 import test_regressions as first_review
 
-from ours_memory import Caller, MemoryService, ReadRequest
+from ours_memory import Caller, ReadRequest
+from ours_memory.service import MemoryService
 from ours_memory.backend import FixtureBackend, Mem0Backend
 from ours_memory.migration import migrate_legacy_forget
 from ours_memory.models import AccessDenied, MemoryChange, ValidationError, stable_id

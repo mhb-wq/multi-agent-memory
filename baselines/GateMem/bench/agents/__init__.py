@@ -6,6 +6,7 @@ from .mem0 import Mem0Agent
 from .remem import ReMemAgent
 from .example_agent import ExampleAgent
 from .external_baselines import BM25Agent, DGMemAgent, EGMemoryAgent, MemGPTAgent, LightMemAgent, MemoryBankAgent
+from .ours_formal import OursFormalAgent
 
 AGENT_REGISTRY = {
     "long_context": LongContextAgent,
@@ -21,4 +22,5 @@ AGENT_REGISTRY = {
     "memgpt": MemGPTAgent,
     "lightmem": LightMemAgent,
     "memorybank": MemoryBankAgent,
+    "ours": OursFormalAgent,
 }

@@ -129,7 +129,9 @@ def recent_source_context(rows, index):
     return list(reversed(chosen))
 
 
-def control_config(users, space, access_mode="governed"):
+def control_config(users, space, access_mode="shared_pool"):
+    if access_mode != "shared_pool":
+        raise ValidationError("仅支持共享记忆池")
     actions = ["read", "write", "confirm"]
     return {
         "access_mode": access_mode,
@@ -149,24 +151,7 @@ def control_config(users, space, access_mode="governed"):
                 "grant_managers": {u: [u] for u in users},
             }
         },
-        "grants": [] if access_mode == "shared_pool" else [
-            {
-                "id": stable_id("gmb_grant", space, u, v),
-                "issuer": v,
-                "grantee": u,
-                "subject": v,
-                "space": space,
-                "category": "conversation",
-                # A participant may record another person's statement in the
-                # existing group mode, but that does not establish authority
-                # to confirm or delete that person's state.
-                "actions": (actions + ["delete"]) if u == v else ["read", "write"],
-                "valid_from": None,
-                "valid_to": None,
-            }
-            for u in users
-            for v in users
-        ],
+        "grants": [],
     }
 
 
@@ -338,7 +323,7 @@ class ReplayClock:
 
 
 def build_memory(run, cfg, trace, clock):
-    from .config import PERSONAL_STATE_TEXT_KEYS
+    from .config import PERSONAL_STATE_TEXT_KEYS, validate_current_method
     from .memos_backend import MemOSBackend
     from .multiuser import MultiUserMemory
     from .scheduler import MemOSSleepScheduler
@@ -346,6 +331,10 @@ def build_memory(run, cfg, trace, clock):
 
     protocol = read_json(run / "protocol.json")
     method = protocol.get("method") or {}
+    if any(method.get(key, True) is not True for key in (
+        "joint_state_update_enabled", "immediate_state_maintenance_enabled", "independent_state_read_enabled"
+    )):
+        raise ValidationError("仅支持最新版联合判断、即时维护和独立状态读取")
     key = os.environ.get("DEEPSEEK_API_KEY")
     if not key:
         raise ValidationError("缺少DEEPSEEK_API_KEY；没有发出模型请求")
@@ -356,10 +345,6 @@ def build_memory(run, cfg, trace, clock):
         model=protocol["memory_model"],
         base_url=base,
         card_repair_attempts=1,
-        card_mode="direct",
-        joint_state_update_enabled=method.get("joint_state_update_enabled", False),
-        immediate_state_maintenance_enabled=method.get("immediate_state_maintenance_enabled", True),
-        independent_state_read_enabled=method.get("independent_state_read_enabled", False),
         retries=1,
         request_options=({"thinking": {"type": "disabled"}} if protocol.get("reasoning_policy", "disabled") == "disabled" else {}),
         state_keys={
@@ -367,6 +352,10 @@ def build_memory(run, cfg, trace, clock):
             for k in ("deadline", "goal", "constraint", "preference", "identity", "task_plan", "commitment", *PERSONAL_STATE_TEXT_KEYS)
         },
     )
+    settings.validate()
+    validate_current_method(settings)
+    if cfg.get("access_mode", "shared_pool") != "shared_pool":
+        raise ValidationError("仅支持共享记忆池")
     store = Store(settings.database)
     native = {
         "directory": str(run / "cubes"),
@@ -403,6 +392,16 @@ def build_memory(run, cfg, trace, clock):
             },
         },
     }
+    embedding_base = protocol["embedding"].get("base_url")
+    if embedding_base:
+        # The formal GateMem runner supplies the same loopback MiniLM service
+        # used by the baselines. Historical runs without this field are unchanged.
+        native["text_memory"]["config"]["embedder"] = {
+            "backend": "universal_api",
+            "config": {"provider": "openai", "model_name_or_path": protocol["embedding"]["model"],
+                       "embedding_dims": protocol["embedding"]["dimensions"],
+                       "base_url": embedding_base, "api_key": "local-only"},
+        }
     backend = MemOSBackend(native, store)
     memory = MultiUserMemory(
         settings,
@@ -452,8 +451,7 @@ def reasoning_tokens(memory):
 
 
 def ingest_run(run, cfg, memory, clock, trace):
-    immediate = (memory.settings.joint_state_update_enabled
-                 and memory.settings.immediate_state_maintenance_enabled)
+    immediate = True
     checkpoint = read_json(run / "checkpoint.json")
     if checkpoint["ready"]:
         if snapshot(memory) != checkpoint["snapshot"]:
@@ -778,7 +776,7 @@ def evaluate(run, cfg, memory, clock, trace, chat, split, limit=None):
         qa_meta = judge_meta = None
         try:
             actor = Actor(question["asking_user_id"], "answerer", cfg["space"], identifier)
-            use_current = read_json(run / "protocol.json").get("method", {}).get("independent_state_read_enabled", False)
+            use_current = True
             bundle = memory.read(
                 actor,
                 subject_ids=cfg["users"],

@@ -6,7 +6,7 @@ from test_multiuser import actor
 from ours_memory.models import ValidationError, stable_id
 from ours_memory.multiuser import MultiUserMemory
 
-pytest_plugins = ["test_multiuser"]
+pytest_plugins = ["current_fixture"]
 
 
 def shared_memory(env):

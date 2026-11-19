@@ -465,8 +465,19 @@ def main() -> None:
 
     args = p.parse_args()
 
+    if args.agent == "ours" and args.resume:
+        raise SystemExit("Ours does not yet support safe automatic resume; preserve the run and replay by episode.")
+
     args.llm_model = _resolve_llm_model_arg(args.llm_provider, args.llm_model)
     args.embed_model = _resolve_embedding_model_arg(args.embed_provider, args.embed_model)
+    if args.agent == "ours":
+        if args.llm_provider == "stub" or not args.use_llm_judge:
+            raise SystemExit("Ours formal evaluation requires a real model and the GateMem LLM judge")
+        if (args.judge_model and args.judge_model != args.llm_model) or (
+                args.judge_provider and args.judge_provider != args.llm_provider):
+            raise SystemExit("Ours memory, answer and judge must use the same requested model and provider")
+        if args.top_k != 20:
+            raise SystemExit("Ours formal evaluation requires the configured top_k=20")
 
     if (args.resume or args.score_only) and not args.run_name:
         raise SystemExit("--resume/--score_only requires --run_name so we know which output folder to use.")
@@ -511,6 +522,9 @@ def main() -> None:
         raise SystemExit("Dataset validation failed. See errors above.")
 
     pred_path = os.path.join(out_dir, "predictions.jsonl")
+    if args.agent == "ours" and not args.score_only and (
+            os.path.exists(pred_path) or os.path.exists(os.path.join(out_dir, "ours_episodes"))):
+        raise SystemExit("Ours output already exists; preserve it and use a new run name")
 
     preds = None
 

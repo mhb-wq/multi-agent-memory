@@ -29,18 +29,12 @@ class Settings:
     state_enabled: bool = True
     routing_enabled: bool = True
     source_expansion_enabled: bool = False
-    independent_state_read_enabled: bool = False
     independent_state_limit: int = 10
-    joint_state_update_enabled: bool = False
-    immediate_state_maintenance_enabled: bool = True
     joint_candidate_limit: int = 10
     state_similarity_threshold: float = 0.2
     candidate_limit: int = 20
     card_batch_size: int = 8
     card_repair_attempts: int = 0
-    # "extract": MemOS extractor -> one ENRICH call per native memory (upstream path).
-    # "direct": one cards_direct call per message; the card text itself is indexed.
-    card_mode: str = "extract"
     max_model_input_chars: int = 192000
     answer_max_input_chars: int = 384000
     max_context_chars: int = 16000
@@ -75,7 +69,7 @@ class Settings:
                 or not math.isfinite(self.state_similarity_threshold)
                 or not -1 <= self.state_similarity_threshold <= 1):
             raise ValidationError("state_similarity_threshold 必须在 -1 到 1 之间")
-        for key in ("sleep_enabled", "state_enabled", "routing_enabled", "source_expansion_enabled", "independent_state_read_enabled", "joint_state_update_enabled", "immediate_state_maintenance_enabled"):
+        for key in ("sleep_enabled", "state_enabled", "routing_enabled", "source_expansion_enabled"):
             if type(getattr(self, key)) is not bool:
                 raise ValidationError(f"{key}必须是布尔值")
         for key in ("candidate_limit", "independent_state_limit", "joint_candidate_limit", "card_batch_size", "max_model_input_chars", "answer_max_input_chars", "max_context_chars", "answer_max_tokens", "state_max_tokens"):
@@ -83,13 +77,8 @@ class Settings:
                 raise ValidationError(f"{key}必须是正整数")
         if type(self.card_repair_attempts) is not int or self.card_repair_attempts not in {0, 1}:
             raise ValidationError("card_repair_attempts只允许0或1，禁止无限重试")
-        if self.card_mode not in {"extract", "direct"}:
-            raise ValidationError("card_mode只允许extract或direct")
         if not self.state_enabled and self.sleep_enabled:
             raise ValidationError("当前Sleep复核用户状态；禁用状态时须同时关闭Sleep")
-        if (self.joint_state_update_enabled and self.immediate_state_maintenance_enabled
-                and (not self.state_enabled or not self.sleep_enabled)):
-            raise ValidationError("逐卡即时维护需要启用状态和维护功能")
 
     @classmethod
     def load(cls, path: str | Path) -> Settings:
@@ -104,3 +93,9 @@ class Settings:
 
     def to_dict(self) -> dict:
         return asdict(self)
+
+
+def validate_current_method(settings: Settings) -> None:
+    """Reject configurations that would select an obsolete research variant."""
+    if not settings.sleep_enabled or not settings.state_enabled:
+        raise ValidationError("仅支持最新版：联合判断、即时维护和独立状态读取必须启用")

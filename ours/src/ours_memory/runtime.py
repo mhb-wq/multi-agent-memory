@@ -4,8 +4,7 @@ import json
 import os
 from pathlib import Path
 
-from .config import Settings
-from .governance import AccessGraph, GovernedMemoryService
+from .config import Settings, validate_current_method
 from .llm import CompatibleJsonModel
 from .memos_backend import MemOSBackend
 from .models import ValidationError
@@ -32,29 +31,16 @@ def build(config_path):
     settings = Settings(**data["method"])
     settings.database = str(root / settings.database)
     settings.validate()
+    validate_current_method(settings)
+    if data.get("mode") != "multiuser-v2" or data.get("control", {}).get("access_mode") != "shared_pool":
+        raise ValidationError("仅支持最新版多用户共享记忆池")
     native = data["memos"]
     native["directory"] = str(root / native["directory"])
     store = Store(settings.database)
-    if data.get("mode") == "multiuser-v2":
-        from .multiuser import MultiUserMemory
-        from .scheduler import MemOSSleepScheduler
-
-        backend = MemOSBackend(native, store)
-        service = MultiUserMemory(
-            settings, backend, CompatibleJsonModel(settings, store), store, data["control"]
-        )
-        service.scheduler = MemOSSleepScheduler(service.core)
-        return service, {}, data.get("identities", [])
-    graph = AccessGraph(store)
-    policies = {}
-    for name, spec in data["policies"].items():
-        known = set(settings.team_agents.get(spec["team_id"], []))
-        if not set(spec["readers"] + spec["writers"] + spec.get("managers", [])) <= known:
-            raise ValidationError("权限配置包含未注册Agent")
-        policies[name] = graph.provision(**spec)
-    backend = MemOSBackend(native, store)
-    service = GovernedMemoryService(settings, backend, CompatibleJsonModel(settings, store), store, graph)
+    from .multiuser import MultiUserMemory
     from .scheduler import MemOSSleepScheduler
 
-    service.scheduler = MemOSSleepScheduler(service)
-    return service, policies, data.get("identities", [])
+    backend = MemOSBackend(native, store)
+    service = MultiUserMemory(settings, backend, CompatibleJsonModel(settings, store), store, data["control"])
+    service.scheduler = MemOSSleepScheduler(service.core)
+    return service, {}, data.get("identities", [])

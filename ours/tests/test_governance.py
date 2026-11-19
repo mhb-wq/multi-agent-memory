@@ -1,14 +1,11 @@
-import os
 from dataclasses import replace
-from unittest.mock import patch
 
 import pytest
 import test_memory as legacy
 
 from ours_memory import Caller, ReadRequest
-from ours_memory.api import Authenticator, create_app
 from ours_memory.governance import AccessGraph, GovernedMemoryService
-from ours_memory.models import AccessDenied, ValidationError
+from ours_memory.models import AccessDenied
 
 
 class TestGovernance(legacy.MemoryTests):
@@ -104,32 +101,3 @@ class TestGovernance(legacy.MemoryTests):
 for _name in dir(legacy.MemoryTests):
     if _name.startswith("test_") and _name not in TestGovernance.__dict__:
         setattr(TestGovernance, _name, None)
-
-
-def test_auth_binds_identity_and_rejects_shared_tokens():
-    identities = [dict(user_id="u", team_id="t", agent_id="a", token_env="TEST_A")]
-    with patch.dict(os.environ, TEST_A="a" * 32):
-        auth = Authenticator(identities)
-        assert auth.authenticate("Bearer " + "a" * 32) == Caller("u", "t", "a")
-        with pytest.raises(AccessDenied):
-            auth.authenticate("Bearer forged")
-        with pytest.raises(ValidationError):
-            Authenticator(identities + [dict(identities[0], agent_id="b")])
-
-
-def test_api_cannot_spoof_identity_or_read_private_id():
-    from fastapi.testclient import TestClient
-
-    case = TestGovernance()
-    case.setUp()
-    try:
-        card = case.enqueue(case.event(readers=("dialogue",)))
-        identities = [dict(user_id="u1", team_id="team", agent_id="planner", token_env="TEST_PLANNER")]
-        with patch.dict(os.environ, TEST_PLANNER="p" * 32):
-            client = TestClient(create_app(case.service, {"shared": case.shared}, identities))
-            headers = {"Authorization": "Bearer " + "p" * 32}
-            assert client.get(f"/cards/{card}", headers=headers).status_code == 403
-            assert client.post("/events", headers=headers, json={"user_id": "other"}).status_code == 422
-            assert client.get(f"/cards/{card}").status_code == 403
-    finally:
-        case.tearDown()

@@ -105,8 +105,7 @@ def create_app(memory, identities):
 
     @app.get("/health")
     def health():
-        immediate = (memory.control.access_mode == "shared_pool" and memory.settings.joint_state_update_enabled
-                     and memory.settings.immediate_state_maintenance_enabled)
+        immediate = True
         return {"mode": "multiuser-v2", "state_visibility": "internal_only",
                 "state_updates": "per_card" if immediate else "sleep_only"}
 

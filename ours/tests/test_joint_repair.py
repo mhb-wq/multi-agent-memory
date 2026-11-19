@@ -7,7 +7,7 @@ from test_multiuser import actor
 from ours_memory.joint_validation import JointIds, JointValidationError, validate_joint
 from ours_memory.models import ModelOutputError, OutputTruncated, stable_id
 
-pytest_plugins = ["test_multiuser"]
+pytest_plugins = ["current_fixture"]
 
 
 def add(subject="marcus", card="card-new"):

@@ -6,7 +6,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from ours_memory import Caller, Event, MemoryService, ReadRequest, Settings
+from ours_memory import Caller, Event, ReadRequest, Settings
+from ours_memory.service import MemoryService
 from ours_memory.backend import FixtureBackend, partition, resolve_mem0_config
 from ours_memory.config import boolean
 from ours_memory.llm import ScriptedModel

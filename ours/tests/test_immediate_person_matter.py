@@ -6,7 +6,7 @@ from ours_memory.models import stable_id
 from ours_memory.multiuser import MultiUserMemory
 from ours_memory.participants import resolve_participants
 
-pytest_plugins = ["test_multiuser"]
+pytest_plugins = ["current_fixture"]
 
 
 def setup_memory(env, aliases=None):
@@ -14,8 +14,6 @@ def setup_memory(env, aliases=None):
     control = copy.deepcopy(config["control"])
     control["access_mode"] = "shared_pool"
     control["person_aliases"] = aliases or {}
-    original.settings.joint_state_update_enabled = True
-    original.settings.immediate_state_maintenance_enabled = True
     return MultiUserMemory(original.settings, original.backend, model, original.store, control, clock), model
 
 

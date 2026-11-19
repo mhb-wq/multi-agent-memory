@@ -1,6 +1,6 @@
 """Trusted authorization plane; never derive grants from ordinary memory text."""
 
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 
 from .models import AccessDenied, ValidationError, active, interval, now, stable_id, timestamp
 
@@ -16,9 +16,9 @@ class Actor:
 class ControlPlane:
     def __init__(self, store, config, clock=now):
         self.store, self.config, self.clock = store, config, clock
-        self.access_mode = config.get("access_mode", "governed")
-        if self.access_mode not in {"governed", "shared_pool"}:
-            raise ValidationError("未知记忆访问模式")
+        self.access_mode = config.get("access_mode", "shared_pool")
+        if self.access_mode != "shared_pool":
+            raise ValidationError("仅支持共享记忆池")
         self.people = set(config["principals"])
         self.state_subjects = set(config.get("state_subjects", config["principals"]))
         if not self.state_subjects <= self.people:
@@ -120,39 +120,11 @@ class ControlPlane:
         if subject not in self.spaces[actor.space_id].get("members", []) or category not in self.categories:
             return False
         agent = self.agents[actor.agent_id]
-        if self.access_mode == "shared_pool":
-            # Research mode: no user-to-user read/write ACL; destructive
-            # control operations are intentionally not enabled.
-            return operation in {"read", "write", "confirm"} and operation in agent.get("actions", [])
-        if category not in agent.get("categories", []) or operation not in agent.get("actions", []):
-            return False
-        matching = [g for g in self.store.all("grant_v2") if (
-            not g["revoked"]
-            and g["grantee"] == actor.principal_id
-            and g["subject"] == subject
-            and g["space"] == actor.space_id
-            and g["category"] == category
-            and operation in g["actions"]
-            and (not g.get("task") or g["task"] == actor.task_id)
-            and (not g.get("agent") or g["agent"] == actor.agent_id)
-            and (not g.get("resource") or g["resource"] == resource)
-            and active(g, self.clock())
-        )]
-        return any(g.get("effect", "allow") == "allow" for g in matching) and not any(
-            g.get("effect") == "deny" for g in matching
-        )
+        return operation in {"read", "write", "confirm"} and operation in agent.get("actions", [])
 
     def require(self, actor, subject, category, operation, *, resource=None):
         if not self.permits(actor, subject, category, operation, resource=resource):
             raise AccessDenied("该请求未获授权")
-
-    def _manager(self, actor, subject, resource=None):
-        self.authenticate(actor)
-        space = self.spaces[actor.space_id]
-        rules = space.get("grant_managers", {})
-        resource_rules = space.get("resource_managers", {})
-        return (actor.principal_id in rules.get(subject, []) or
-                bool(resource and actor.principal_id in resource_rules.get(resource, [])))
 
     def maintenance_summary(self, actor):
         """Summarize rules without changing their authority or retaining private facts."""
@@ -168,46 +140,7 @@ class ControlPlane:
         }
 
     def grant(self, actor, spec):
-        if self.access_mode == "shared_pool":
-            raise AccessDenied("共享池模式不执行授权操作")
-        self._validate(spec)
-        if (
-            spec["issuer"] != actor.principal_id
-            or spec["space"] != actor.space_id
-            or not self._manager(actor, spec["subject"], spec.get("resource"))
-        ):
-            raise AccessDenied("没有授予该主体权限的资格")
-        if "grant" not in self.agents[actor.agent_id].get("controls", []):
-            raise AccessDenied("Agent不具备授权操作职责")
-        key = stable_id("grant", spec["id"])
-        if self.store.get("grant_v2", key):
-            raise ValidationError("授权ID已使用；恢复授权必须建立新记录")
-        self.store.put("grant_v2", key, {**spec, "revoked": False})
-        self._audit(actor, "grant", spec["id"])
-        return {"grant_id": spec["id"], "status": "active"}
+        raise AccessDenied("共享池模式不执行授权操作")
 
     def revoke(self, actor, grant_id):
-        if self.access_mode == "shared_pool":
-            raise AccessDenied("共享池模式不执行撤权操作")
-        self.authenticate(actor)
-        key = stable_id("grant", grant_id)
-        row = self.store.get("grant_v2", key)
-        if (
-            not row
-            or row["space"] != actor.space_id
-            or not self._manager(actor, row["subject"], row.get("resource"))
-            or "revoke" not in self.agents[actor.agent_id].get("controls", [])
-        ):
-            raise AccessDenied("无权撤销该授权")
-        row.update(revoked=True, revoked_at=self.clock())
-        self.store.put("grant_v2", key, row)
-        self._audit(actor, "revoke", grant_id)
-        return {"grant_id": grant_id, "status": "revoked"}
-
-    def _audit(self, actor, operation, target):
-        at = self.clock()
-        timestamp(at)
-        key = stable_id("control_audit", asdict(actor), operation, target, at)
-        self.store.put(
-            "control_audit", key, {"actor": asdict(actor), "operation": operation, "target": target, "at": at}
-        )
+        raise AccessDenied("共享池模式不执行撤权操作")

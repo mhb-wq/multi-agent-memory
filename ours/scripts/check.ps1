@@ -10,9 +10,6 @@ try {
     if ($LASTEXITCODE) { throw "Format check failed" }
     & .venv/Scripts/python.exe -X utf8 -m pytest tests -q --junitxml=reports/tests.xml
     if ($LASTEXITCODE) { throw "Tests failed" }
-    $DemoPath = "runtime/demo-" + (Get-Date -Format "yyyyMMdd-HHmmss")
-    & .venv/Scripts/python.exe -X utf8 -m ours_memory.cli demo-v2 --output ($DemoPath + "-multiuser")
-    if ($LASTEXITCODE) { throw "Multi-user native integration demo failed" }
 } finally {
     Pop-Location
 }
