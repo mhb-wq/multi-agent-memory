@@ -18,7 +18,7 @@
 
 九个基线的名称为 NaiveRAG、BM25、Mem0、A-MEM、MemGPT、LightMem、MemoryBank、DG-Mem、EGMemory。入口在 [`external_baselines.py`](baselines/GateMem/bench/agents/external_baselines.py) 和 GateMem 内置 agent。A-MEM、MemGPT、MemoryBank、LightMem 等存在 benchmark 适配或轻量实现，具体差异见[适配说明](docs/GateMem适配说明与检查结果.md)，不能直接声称均为论文官方完整复现。
 
-EGMemory 的多轮原生读取在本接入中每题共享 `top_k` 条不同记忆节点的预算，默认 20；它仍可能与其他系统的条目长度和 token 不同。当前配置使用 MiniLM 向量及 `noop` 重排序器。详见[EGMemory 检索限制](baselines/GateMem/configs/EGMemory-检索限制说明.md)。
+EGMemory 的多轮原生读取在本接入中每题共享 `top_k` 条不同记忆节点的预算，默认 20；检索后的最终回答与其他基线使用 GateMem 官方统一回答模板。原生检索产生的临时答案不会用作最终答案，该流程增加一次模型回答调用。不同系统的条目长度和 token 仍可能不同。当前配置使用 MiniLM 向量及 `noop` 重排序器。详见[EGMemory 检索限制与回答流程](baselines/GateMem/configs/EGMemory-检索限制说明.md)。
 
 ## 环境与实验
 

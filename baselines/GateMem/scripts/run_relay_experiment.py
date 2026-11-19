@@ -125,7 +125,8 @@ def run_child(args, env, base, relay_url, embedding_url, result_dir, data_dir):
                         "embedding_device": "cpu", "embedding_token_usage": "not_measured",
                         "smoke_only": args.smoke, "modified_checkpoint_boundary": args.smoke_turns,
                         "top_k": 20, "episode_concurrency": 1, "judge_concurrency": 1,
-                        "mem0_backend": "builtin", "egmemory_answer_mode": "native",
+                        "mem0_backend": "builtin", "egmemory_retrieval_mode": "native",
+                        "egmemory_answer_mode": "gatemem_unified",
                         "lightmem_update": "checkpoint", "memorybank_mode": "incremental_multiparticipant_adaptation"}
             (result_dir / "experiment_manifest.json").write_text(
                 json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

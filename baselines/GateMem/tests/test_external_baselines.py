@@ -271,34 +271,79 @@ class BaselineAdaptersTest(unittest.TestCase):
         self.assertFalse(path.exists())
         self.assertIsNone(agent.memory)
 
-    def test_egmemory_native_keeps_tool_evidence_and_normalizes(self):
+    def test_egmemory_native_retrieval_uses_unified_final_answer(self):
         import sys
         sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "EGMemory"))
         from groupmem import GroupMemory
         from groupmem.memory.reader import ReadTools
+        from groupmem.schema import Memory
         class FakeMemory:
             def __init__(self):
-                self.read_side = {"tools": ReadTools(SimpleNamespace(memories={}), SimpleNamespace())}
+                records = {"m1": Memory(memory_id="m1", content="visible evidence", author="alice", role="user")}
+                self.read_side = {"tools": ReadTools(SimpleNamespace(memories=records), SimpleNamespace())}
             def load(self): return self.read_side
             def add(self, rows, channel): pass
             def answer(self, question, **kwargs):
                 self.kwargs = kwargs
-                return '{"action":"answer","answer":"zebra"}', [{"tool":"search_memory","ret":"visible evidence"}]
+                tools = self.read_side["tools"]
+                tools.new_session()
+                if question == "empty":
+                    return "NATIVE_WRONG_ANSWER", [{"tool":"__final__", "ret":""}]
+                result = tools._fmt_scored(["m1"], cap=15)
+                return '{"action":"answer","answer":"NATIVE_WRONG_ANSWER"}', [
+                    {"tool":"search_memory", "ret":result + " TOOL_INSTRUCTION_MARKER"},
+                    {"tool":"__final__", "ret":""}]
             def close(self): pass
+        class FakeRouter:
+            provider = "fixture"
+            def __init__(self): self.calls = []
+            def complete_result(self, **kwargs):
+                self.calls.append(kwargs)
+                return SimpleNamespace(text='{"action":"answer","answer":"unified answer"}',
+                                       usage={"total_tokens": 42}, latency_s=0.1,
+                                       provider="fixture", model="fixture-model")
         fake = FakeMemory()
+        router = FakeRouter()
         with tempfile.TemporaryDirectory() as tmp:
             config = Path(tmp) / "config.json"
             config.write_text(json.dumps({"llm": {"backend":"openai_compat", "model":"test"}}), encoding="utf-8")
             with patch.dict(os.environ, {"GATEMEM_EGMEMORY_CONFIG": str(config), "GATEMEM_EGMEMORY_READ_MODE": "native"}), \
                  patch.object(GroupMemory, "from_config", return_value=fake):
-                agent = AGENT_REGISTRY["egmemory"](top_k=20)
+                agent = AGENT_REGISTRY["egmemory"](top_k=20, llm_router=router)
                 agent.reset({"episode_id":"e"})
                 result = agent.query(checkpoint())
                 self.assertEqual(result["action"], "answer")
-                self.assertEqual(result["answer"], "zebra")
-                self.assertEqual(result["prompt_memory_block"], "visible evidence")
+                self.assertEqual(result["answer"], "unified answer")
+                self.assertEqual(len(router.calls), 1)
+                prompts = router.calls[0]
+                template = agent._load_query_template()
+                official_system, official_user = agent._split_system_user(template)
+                from bench.domains import detect_domain_from_episode, get_domain_label, get_query_policy_block
+                domain = detect_domain_from_episode(agent.episode)
+                ck = checkpoint()
+                variables = {"domain_label":get_domain_label(domain), "global_access_policy_block":get_query_policy_block(domain),
+                             "asker_principal_id":ck.asker_principal_id, "asker_role":ck.asker_role,
+                             "relationship_facts_block":agent._format_relationship_facts(ck),
+                             "retrieved_memory_block":result["prompt_memory_block"], "query_text":ck.query_text}
+                self.assertEqual(prompts["system_prompt"], official_system.format(**variables))
+                self.assertEqual(prompts["user_prompt"], official_user.format(**variables))
+                self.assertIn("[USER QUESTION]", prompts["user_prompt"])
+                self.assertIn("visible evidence", prompts["user_prompt"])
+                self.assertNotIn("TOOL_INSTRUCTION_MARKER", prompts["user_prompt"])
+                self.assertNotIn("NATIVE_WRONG_ANSWER", str(prompts))
+                self.assertIn("visible evidence", result["prompt_memory_block"])
+                self.assertEqual(result["egmemory_evidence_ids"], ["m1"])
+                self.assertEqual(result["egmemory_answer_mode"], "gatemem_unified")
                 self.assertEqual(result["egmemory_evidence_limit"], 20)
+                self.assertEqual(result["llm_usage"]["total_tokens"], 42)
                 self.assertNotIn("HIDDEN_TARGET", str(fake.kwargs))
+                self.assertNotIn("HIDDEN_TARGET", str(prompts))
+                empty_result = agent.query(checkpoint("empty"))
+                self.assertEqual(empty_result["retrieved_memory"], [])
+                self.assertEqual(empty_result["prompt_memory_block"], "(none)")
+                self.assertEqual(empty_result["egmemory_evidence_count"], 0)
+                self.assertEqual(empty_result["answer"], "unified answer")
+                self.assertNotIn("NATIVE_WRONG_ANSWER", str(router.calls[-1]))
                 agent.memory.close()
                 agent._temporary.cleanup()
 

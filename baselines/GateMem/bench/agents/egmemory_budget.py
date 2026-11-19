@@ -15,6 +15,10 @@ def bounded_read_tools(original, limit: int):
     base = getattr(type(original), "_gatemem_unwrapped_type", type(original))
 
     class BudgetedReadTools(base):
+        def new_session(self):
+            super().new_session()
+            self.evidence_order = []
+
         def _remaining(self):
             return max(0, limit - len(self._seen))
 
@@ -34,7 +38,11 @@ def bounded_read_tools(original, limit: int):
             unseen = self._unseen(ids)
             if not unseen:
                 return "No new matching memory; answer using previously returned memories."
-            return super()._fmt_scored(unseen, cap=min(cap or self.max_passages, remaining))
+            selected = unseen[:min(cap or self.max_passages, remaining)]
+            result = super()._fmt_scored(selected, cap=len(selected))
+            self.evidence_order.extend(sorted((mid for mid in selected if mid in self._seen),
+                                              key=lambda mid: self.store.memories[mid].timestamp))
+            return result
 
         def _scoped_decisions(self, ordered, exact):
             remaining = self._remaining()
@@ -45,6 +53,7 @@ def bounded_read_tools(original, limit: int):
                 return "No new decision evidence; answer using previously returned memories."
             result = super()._scoped_decisions(selected, exact)
             self._seen.update(selected)
+            self.evidence_order.extend(selected)
             return result
 
         def resolve_date(self, msg_id, phrase, anchor="msg"):

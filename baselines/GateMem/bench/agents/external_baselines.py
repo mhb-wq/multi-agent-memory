@@ -381,9 +381,7 @@ class EGMemoryAgent(_IncrementalAgent):
         mode = os.environ.get("GATEMEM_EGMEMORY_READ_MODE", "native")
         if mode == "native":
             from bench.agents.egmemory_budget import bounded_read_tools
-            from bench.agents.utils_llm import _infer_action_from_text, _parse_llm_json, _coerce_answer_structured
             from bench.domains import detect_domain_from_episode, get_domain_label, get_query_policy_block
-            from groupmem.utils.text import split_reasoning_and_final
             template = self._load_query_template()
             system, _ = self._split_system_user(template)
             domain = detect_domain_from_episode(self.episode)
@@ -399,31 +397,25 @@ class EGMemoryAgent(_IncrementalAgent):
             read_side = self.memory.load()
             read_side["tools"] = bounded_read_tools(read_side["tools"], self.top_k)
             budget_tools = read_side["tools"]
-            text, trace = self.memory.answer(checkpoint.query_text, asking_user=checkpoint.asker_principal_id,
-                                             user_context=context, with_trace=True)
-            _, final = split_reasoning_and_final(text)
-            raw = final or text
-            parsed = _parse_llm_json(raw)
-            if not isinstance(parsed, dict):
-                parsed = {"action": _infer_action_from_text(raw), "answer": raw}
-            action = str(parsed.get("action", "answer"))
-            if action not in {"answer", "answer_redacted", "refuse", "no_memory"}:
-                action = "answer"
-            used = parsed.get("used_record_ids")
-            used = [str(v) for v in used] if isinstance(used, list) else []
-            visible = [str(entry.get("ret") or "") for entry in trace if entry.get("tool") != "__final__"]
-            block = "\n\n".join(visible)
-            items = [{"record_id": f"tool:{i}", "text": value} for i, value in enumerate(visible)]
-            return {"action": action, "answer": str(parsed.get("answer", "")),
-                    "answer_structured": _coerce_answer_structured(parsed.get("answer_structured")),
-                    "used_record_ids": used, "retrieved_memory": items, "prompt_memory_block": block,
-                    "memory_audit": self._build_memory_audit(retrieved_memory=items, prompt_memory_block=block,
-                                                             context_format="egmemory_tool_results"),
-                    "answer_protocol": "egmemory_native", "egmemory_tool_trace": self._json_safe(trace),
-                    "egmemory_read_mode": "native", "egmemory_evidence_limit": self.top_k,
-                    "egmemory_evidence_count": len(budget_tools._seen),
-                    "egmemory_evidence_ids": sorted(budget_tools._seen),
-                    "retrieval_s": time.perf_counter() - started}
+            _, trace = self.memory.answer(checkpoint.query_text, asking_user=checkpoint.asker_principal_id,
+                                          user_context=context, with_trace=True)
+            # The native loop is used only to select evidence. Do not pass its
+            # provisional answer, reasoning or tool instructions to the final
+            # model: the latter must receive the same GateMem answer template
+            # and memory rendering as the other baseline adapters.
+            ids = budget_tools.evidence_order
+            if len(ids) != len(budget_tools._seen) or set(ids) != budget_tools._seen:
+                raise RuntimeError("EGMemory evidence ordering does not match retrieved nodes")
+            memories = []
+            for mid in ids:
+                mem = budget_tools.store.memories[mid]
+                memories.append({"record_id": mid, "principal_id": mem.author,
+                                 "role": mem.role, "text": budget_tools._passage(mem)})
+            out = self._answer(checkpoint, memories, started)
+            out.update(egmemory_tool_trace=self._json_safe(trace), egmemory_read_mode="native",
+                       egmemory_answer_mode="gatemem_unified", egmemory_evidence_limit=self.top_k,
+                       egmemory_evidence_count=len(ids), egmemory_evidence_ids=list(ids))
+            return out
         if mode != "search":
             raise ValueError("GATEMEM_EGMEMORY_READ_MODE must be native or search")
         hits = self.memory.search(checkpoint.query_text, k=self.top_k) if self.messages else []
